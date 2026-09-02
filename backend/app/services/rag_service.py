@@ -45,14 +45,18 @@ class RAGService:
         if not content_tokens and not any('\u0B80' <= c <= '\u0BFF' for c in query):
             return []
 
-        # Category keyword map for rapid semantic routing
+        # Category keyword map for rapid semantic routing with full English, Tamil & Tanglish coverage
         category_synonyms = {
-            "kb_network_wifi": ["wifi", "wi-fi", "internet", "net", "network", "router", "modem", "connection", "disconnected", "offline", "dns", "lan", "wan", "broadband", "speed", "slow net", "வைபை", "இன்டர்நெட்", "நெட்வொர்க்", "வலைப்பின்னல்", "ரூட்டர்", "வரல", "கனெக்ட்"],
-            "kb_account_password": ["password", "passcode", "account", "login", "locked", "lockout", "reset", "forgot", "2fa", "mfa", "otp", "credentials", "கடவுச்சொல்", "லாகின்", "பாஸ்வேர்ட்", "கணக்கு", "மறந்து"],
-            "kb_hardware_printer": ["printer", "print", "printing", "offline", "paper jam", "spooler", "cartridge", "toner", "scanner", "பிரிண்டர்", "அச்சுப்பொறி", "பேப்பர்"],
-            "kb_os_bsod_performance": ["slow", "freeze", "freezing", "crash", "bsod", "blue screen", "performance", "cpu", "memory", "ram", "hang", "restart", "sluggish", "lag", "வேகம்", "ஹேங்", "ப்ளூ ஸ்கிரீன்", "மெதுவாக"],
-            "kb_software_install": ["install", "installation", "update", "0x80070005", "access denied", "setup", "installer", "software", "நிறுவல்", "இன்ஸ்டால்"],
-            "kb_critical_escalation": ["smoke", "burning", "fire", "spark", "liquid", "spill", "water", "supervisor", "human", "agent", "manager", "புகை", "தீ", "தண்ணீர்", "மேலாளர்", "மனிதர்", "எரியுது"]
+            "kb_network_wifi": ["wifi", "wi-fi", "internet", "net", "network", "router", "modem", "connection", "disconnected", "offline", "dns", "lan", "wan", "broadband", "speed", "slow net", "net varala", "wifi connect aagala", "வைபை", "இன்டர்நெட்", "நெட்வொர்க்", "வலைப்பின்னல்", "ரூட்டர்", "வரல", "கனெக்ட்", "இணைப்பு"],
+            "kb_account_password": ["password", "passcode", "account", "login", "locked", "lockout", "reset", "forgot", "2fa", "mfa", "otp", "credentials", "password maranthuten", "login aagala", "கடவுச்சொல்", "லாகின்", "பாஸ்வேர்ட்", "கணக்கு", "மறந்து"],
+            "kb_hardware_printer": ["printer", "print", "printing", "offline", "paper jam", "spooler", "cartridge", "toner", "scanner", "printer velai seiyala", "பிரிண்டர்", "அச்சுப்பொறி", "பேப்பர்"],
+            "kb_os_bsod_performance": ["slow", "freeze", "freezing", "crash", "bsod", "blue screen", "performance", "cpu", "memory", "ram", "hang", "restart", "sluggish", "lag", "pc hang", "வேகம்", "ஹேங்", "ப்ளூ ஸ்கிரீன்", "மெதுவாக"],
+            "kb_software_install": ["install", "installation", "update", "0x80070005", "access denied", "setup", "installer", "software", "install aagala", "நிறுவல்", "இன்ஸ்டால்"],
+            "kb_audio_mic_meeting": ["mic", "microphone", "audio", "headset", "headphones", "zoom", "teams", "meet", "cannot hear", "mute", "sound", "speaker", "sound kekala", "mic velai seiyala", "மைக்", "ஆடியோ", "சத்தம்", "ஹெட்போன்", "கேட்கவில்லை"],
+            "kb_vpn_remote_access": ["vpn", "remote desktop", "rdp", "cisco", "anyconnect", "forticlient", "globalprotect", "intranet", "tunnel", "corporate network", "vpn connect aagala", "விபிஎன்", "ரிமோட்"],
+            "kb_email_outlook_sync": ["email", "outlook", "mail", "outbox", "sync", "inbox", "exchange", "gmail", "smtp", "imap", "mail send aagala", "ஈமெயில்", "அஞ்சல்", "மெயில்"],
+            "kb_bluetooth_peripheral": ["bluetooth", "mouse", "keyboard", "trackpad", "pairing", "wireless", "connect device", "mouse velai seiyala", "ப்ளூடூத்", "மவுஸ்", "விசைப்பலகை"],
+            "kb_critical_escalation": ["smoke", "burning", "fire", "spark", "liquid", "spill", "water", "supervisor", "human", "agent", "manager", "smoke varuthu", "thee", "pugai", "புகை", "தீ", "தண்ணீர்", "மேலாளர்", "மனிதர்", "எரியுது"]
         }
 
         scored_articles: List[Tuple[KnowledgeArticle, float]] = []

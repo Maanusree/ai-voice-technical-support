@@ -1,0 +1,26 @@
+{
+  "session_id": "call_4c78fdd83c",
+  "caller_number": "+917418214150",
+  "caller_name": "Customer",
+  "start_time": "2026-09-02T09:59:30.371312Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "General Inquiries",
+  "issue_summary": null,
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Website",
+  "diagnostics": {
+    "scenario_id": null,
+    "current_step_index": 0,
+    "attempted_steps": [],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

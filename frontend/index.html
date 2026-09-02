@@ -110,21 +110,48 @@
         <!-- Right: Conversation HUD & Quick Scenarios -->
         <div class="hud-layout">
 
-          <!-- 3-Step Human Guide Banner -->
-          <div class="welcome-banner">
-            <div style="font-weight: 700; font-size: 0.88rem;">💡 How to use this Voice Assistant:</div>
-            <div class="guide-steps">
-              <div class="guide-step">
-                <span class="step-num">1</span>
-                <span>Click <strong>Start Call</strong> (or a scenario below)</span>
+          <!-- 3-Step Human Guide Banner & Twilio Gateway Showcase -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+            <!-- Guide Banner -->
+            <div class="welcome-banner" style="margin-bottom: 0;">
+              <div style="font-weight: 700; font-size: 0.88rem;">💡 How to use this Voice Assistant:</div>
+              <div class="guide-steps">
+                <div class="guide-step">
+                  <span class="step-num">1</span>
+                  <span>Click <strong>Start Call</strong> (or a scenario below)</span>
+                </div>
+                <div class="guide-step">
+                  <span class="step-num">2</span>
+                  <span><strong>Speak or type</strong> your technical issue</span>
+                </div>
+                <div class="guide-step">
+                  <span class="step-num">3</span>
+                  <span>Follow Maanu's voice troubleshooting</span>
+                </div>
               </div>
-              <div class="guide-step">
-                <span class="step-num">2</span>
-                <span><strong>Speak or type</strong> your technical issue</span>
+            </div>
+
+            <!-- Twilio Telephony Showcase Card -->
+            <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.9)); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 0.9rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-weight: 700; font-size: 0.85rem; color: #fff; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>📱</span> Cellular Telephony (Twilio PSTN)
+                </div>
+                <span class="badge success" style="font-size: 0.68rem; padding: 0.15rem 0.5rem;">🟢 Online</span>
               </div>
-              <div class="guide-step">
-                <span class="step-num">3</span>
-                <span>Follow Maanu's guide step-by-step</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.4rem 0;">
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Twilio Support Hotline</div>
+                  <div style="font-size: 1.05rem; font-weight: 800; color: #38bdf8; font-family: monospace;">+1 (903) 532-2035</div>
+                </div>
+                <button type="button" onclick="window.openPhoneCallModal && window.openPhoneCallModal()" style="background: linear-gradient(135deg, #0284c7, #2563eb); border: none; color: #fff; font-weight: 700; padding: 0.45rem 0.8rem; font-size: 0.78rem; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);">
+                  📲 Call Phone
+                </button>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.25rem;">
+                <span class="badge info" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">TwiML XML</span>
+                <span class="badge info" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">Speech Gathering</span>
+                <span class="badge info" style="font-size: 0.65rem; padding: 0.1rem 0.35rem;">Dual-Channel PSTN</span>
               </div>
             </div>
           </div>
@@ -221,11 +248,12 @@
       </div>
 
       <!-- Action Bar -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
         <h2 style="font-size: 1.15rem; font-weight: 700;">Call Detail Records (CDR) &amp; Transcripts</h2>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="nav-tab" id="btnRefreshLogs" style="background: rgba(255,255,255,0.08);">🔄 Refresh Logs</button>
-          <button class="nav-tab" id="btnExportCsv" style="background: var(--success); color: #fff;">📥 Export CSV</button>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="nav-tab" id="btnRefreshLogs" onclick="loadDashboardDirect()" style="background: rgba(255,255,255,0.08); cursor: pointer;">🔄 Refresh</button>
+          <button class="nav-tab" onclick="exportAllTranscriptsJSON()" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; cursor: pointer;">📥 Export JSON</button>
+          <button class="nav-tab" id="btnExportCsv" style="background: var(--success); color: #fff; cursor: pointer;">📥 Export CSV</button>
         </div>
       </div>
 
@@ -372,6 +400,29 @@
         </form>
       </div>
     </section>
+
+    <!-- Developer Showcase Footer -->
+    <footer class="app-footer" style="margin-top: 2.5rem; padding: 1.5rem; text-align: center; border-top: 1px solid var(--border-color); background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);">
+      <div style="font-size: 0.98rem; font-weight: 700; color: #f8fafc; margin-bottom: 0.4rem;">
+        👩‍💻 Engineered by <span style="background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">Maanusree</span> — AI Voice Technical Support Specialist
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem;">
+        Enterprise Dual-Channel Voice Agent (WebRTC &amp; Twilio PSTN Cellular Gateway) &bull; Diagnostic Decision Trees &bull; RAG Knowledge Base
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; gap: 1.25rem; font-size: 0.85rem; flex-wrap: wrap;">
+        <a href="https://github.com/Maanusree/ai-voice-technical-support" target="_blank" style="color: #38bdf8; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub Repository
+        </a>
+        <span style="color: var(--text-muted);">&bull;</span>
+        <a href="https://www.linkedin.com/in/maanusree-s-4305a4314" target="_blank" style="color: #818cf8; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          <svg height="16" width="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.74V10.13H5.06v8.37h2.8z"></path></svg>
+          LinkedIn Profile
+        </a>
+        <span style="color: var(--text-muted);">&bull;</span>
+        <span style="color: var(--text-muted); font-size: 0.8rem;">FastAPI &bull; Twilio TwiML &bull; Edge-TTS &bull; Gemini 2.0 Flash</span>
+      </div>
+    </footer>
 
   </main>
 
@@ -591,6 +642,81 @@
       }
     }
 
+    // Audio Playback Function for Call History
+    function playTurnVoice(text, btnElement) {
+      if (!window.speechSynthesis) {
+        alert('Web Speech API is not supported in this browser.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/[*_#`]/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.05;
+
+      const voices = window.speechSynthesis.getVoices();
+      const femaleVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Google US English')));
+      if (femaleVoice) utterance.voice = femaleVoice;
+
+      if (btnElement) {
+        const originalText = btnElement.innerHTML;
+        btnElement.innerHTML = '🔊 Playing...';
+        btnElement.style.background = 'rgba(56, 189, 248, 0.4)';
+        utterance.onend = () => {
+          btnElement.innerHTML = originalText;
+          btnElement.style.background = '';
+        };
+        utterance.onerror = () => {
+          btnElement.innerHTML = originalText;
+          btnElement.style.background = '';
+        };
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+    window.playTurnVoice = playTurnVoice;
+
+    // Export Single Transcript as JSON
+    async function exportSessionJSON(sessionId) {
+      try {
+        const resp = await fetch(`/api/logs/sessions/${sessionId}`);
+        const session = await resp.json();
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(session, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `Transcript_${sessionId}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+      } catch (e) {
+        console.error('Export JSON error:', e);
+      }
+    }
+    window.exportSessionJSON = exportSessionJSON;
+
+    // Export All Transcripts as JSON
+    async function exportAllTranscriptsJSON() {
+      try {
+        const resp = await fetch('/api/logs/sessions?limit=100');
+        const data = await resp.json();
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `InnoAssist_All_Transcripts_${new Date().toISOString().slice(0,10)}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+      } catch (e) {
+        console.error('Export All JSON error:', e);
+      }
+    }
+    window.exportAllTranscriptsJSON = exportAllTranscriptsJSON;
+
+    // Print / PDF Export
+    function printTranscript(sessionId) {
+      window.print();
+    }
+    window.printTranscript = printTranscript;
+
     async function viewTranscriptDirect(sessionId) {
       const modal = document.getElementById('transcriptModal');
       const modalBody = document.getElementById('modalTranscriptBody');
@@ -600,25 +726,57 @@
         const resp = await fetch(`/api/logs/sessions/${sessionId}`);
         const session = await resp.json();
         if (modalTitle) modalTitle.innerText = `Call Transcript - ${sessionId}`;
+
+        const isPhone = (session.call_type && session.call_type.includes('Phone')) || (session.caller_number && session.caller_number.startsWith('+1903'));
+        const typeLabel = isPhone ? '📱 Cellular Phone (Twilio PSTN)' : '🌐 Website (Browser Voice)';
+        const typeBadge = isPhone ? 'warning' : 'info';
+
         let contentHtml = `
-          <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid var(--border-color);">
-            <p><strong>Caller:</strong> ${session.caller_name} (${session.caller_number})</p>
-            <p><strong>Category:</strong> ${session.issue_category}</p>
-            <p><strong>Status:</strong> ${session.resolution_status} | <strong>Sentiment:</strong> ${session.sentiment}</p>
-            ${session.escalation_ticket_id ? `<p style="color: var(--danger);"><strong>Escalation Ticket:</strong> ${session.escalation_ticket_id}</p>` : ''}
+          <!-- Toolbar -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <span class="badge ${typeBadge}" style="font-size: 0.8rem; padding: 0.25rem 0.6rem;">${typeLabel}</span>
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="nav-tab" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; cursor: pointer; color: #38bdf8;" onclick="exportSessionJSON('${session.session_id}')">
+                📥 Download JSON
+              </button>
+              <button class="nav-tab" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(255,255,255,0.08); cursor: pointer;" onclick="printTranscript('${session.session_id}')">
+                🖨️ Print / Save PDF
+              </button>
+            </div>
           </div>
+
+          <!-- Session Metadata Header -->
+          <div style="margin-bottom: 1rem; padding: 0.85rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid var(--border-color); display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; font-size: 0.85rem;">
+            <div><strong>Caller:</strong> ${session.caller_name} (${session.caller_number})</div>
+            <div><strong>Category:</strong> ${session.issue_category || 'General Inquiries'}</div>
+            <div><strong>Status:</strong> <span class="badge ${session.resolution_status === 'resolved' ? 'success' : (session.resolution_status === 'escalated' ? 'danger' : 'warning')}">${session.resolution_status.toUpperCase()}</span></div>
+            <div><strong>Duration:</strong> ${Math.round(session.duration_seconds || 0)}s | <strong>Sentiment:</strong> ${session.sentiment || 'neutral'}</div>
+            ${session.escalation_ticket_id ? `<div style="grid-column: 1 / -1; color: var(--danger);"><strong>Escalation Ticket:</strong> ${session.escalation_ticket_id}</div>` : ''}
+          </div>
+
+          <!-- Dialogue Turns -->
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
         `;
         if (session.turns && session.turns.length > 0) {
-          session.turns.forEach(turn => {
+          session.turns.forEach((turn, idx) => {
             const isAssistant = turn.role === 'assistant';
+            const escapedText = turn.text.replace(/'/g, "\\'").replace(/"/g, '&quot;');
             contentHtml += `
-              <div style="padding: 0.85rem; border-radius: 8px; background: ${isAssistant ? 'rgba(30, 41, 59, 0.8)' : 'rgba(59, 130, 246, 0.15)'}; border-left: 4px solid ${isAssistant ? 'var(--accent-cyan)' : 'var(--accent-blue)'};">
-                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.25rem; display: flex; justify-content: space-between;">
+              <div style="padding: 0.85rem; border-radius: 8px; background: ${isAssistant ? 'rgba(30, 41, 59, 0.85)' : 'rgba(59, 130, 246, 0.15)'}; border-left: 4px solid ${isAssistant ? 'var(--accent-cyan)' : 'var(--accent-blue)'};">
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
                   <strong>${isAssistant ? '👩‍💻 Support Specialist (Maanu)' : '👤 Caller'}</strong>
-                  <span>${turn.timestamp ? new Date(turn.timestamp).toLocaleTimeString() : ''}</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span>${turn.timestamp ? new Date(turn.timestamp).toLocaleTimeString() : ''}</span>
+                    ${isAssistant ? `
+                      <button class="nav-tab" style="padding: 0.15rem 0.5rem; font-size: 0.7rem; background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; cursor: pointer; border-radius: 4px;" onclick="playTurnVoice('${escapedText}', this)">
+                        ▶️ Listen
+                      </button>
+                    ` : ''}
+                  </div>
                 </div>
-                <div style="color: var(--text-primary); font-size: 0.92rem; line-height: 1.4;">${turn.text}</div>
+                <div style="color: var(--text-primary); font-size: 0.92rem; line-height: 1.45;">${turn.text}</div>
               </div>
             `;
           });
@@ -697,10 +855,10 @@
   </script>
 
   <!-- Scripts -->
-  <script src="/static/js/audio_visualizer.js?v=1.0.7"></script>
-  <script src="/static/js/phone_call.js?v=1.0.7"></script>
-  <script src="/static/js/dashboard.js?v=1.0.7"></script>
-  <script src="/static/js/kb_explorer.js?v=1.0.7"></script>
-  <script src="/static/js/app.js?v=1.0.7"></script>
+  <script src="/static/js/audio_visualizer.js?v=1.0.8"></script>
+  <script src="/static/js/phone_call.js?v=1.0.8"></script>
+  <script src="/static/js/dashboard.js?v=1.0.8"></script>
+  <script src="/static/js/kb_explorer.js?v=1.0.8"></script>
+  <script src="/static/js/app.js?v=1.0.8"></script>
 </body>
 </html>

@@ -1,0 +1,55 @@
+{
+  "session_id": "call_106f7540d8",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Mobile Customer",
+  "start_time": "2026-09-02T05:02:38.002398Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "Network & Connectivity",
+  "issue_summary": "Wi-Fi and Internet Connectivity Troubleshooting - My wife, a router is not working.",
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Phone (Twilio PSTN)",
+  "diagnostics": {
+    "scenario_id": "kb_network_wifi",
+    "current_step_index": 0,
+    "attempted_steps": [
+      "Step 1: First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?"
+    ],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "f3c36fb1",
+      "role": "user",
+      "text": "My wife, a router is not working.",
+      "timestamp": "2026-09-02T05:02:38.004913Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "fe6c1b37",
+      "role": "assistant",
+      "text": "I can certainly help you with your network & connectivity issue. First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "timestamp": "2026-09-02T05:02:38.008279Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 3.214120864868164
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_start",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

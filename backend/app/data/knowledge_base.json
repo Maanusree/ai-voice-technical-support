@@ -298,6 +298,219 @@
       "fallback_resolution": "If installation continues to fail due to domain policies or registry errors, escalate to System Administration for remote package deployment."
     },
     {
+      "id": "kb_audio_mic_meeting",
+      "title": "Microphone, Headset & Audio Issues in Meetings (Zoom, Teams, Google Meet)",
+      "category": "Audio & Video Devices",
+      "keywords": ["mic", "microphone", "audio", "headset", "headphones", "zoom", "teams", "meet", "cannot hear", "mute", "sound", "speaker", "மைக்", "ஆடியோ", "சத்தம்", "ஹெட்போன்"],
+      "summary": "Diagnostic procedure for resolving microphone input failures, muted headset audio, and conference call device selection issues.",
+      "common_symptoms": [
+        "Other meeting attendees cannot hear me speaking",
+        "Microphone input level shows 0% in Sound Settings",
+        "Headset connected but sound plays through laptop speakers",
+        "App permission blocked access to microphone"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "I know how disruptive audio issues can be during calls! First, let's check your physical headset cable or mute switch. If your headset has an in-line mute button, make sure the red light is off. Are you plugged directly into the audio jack or USB port?",
+          "rationale": "Rules out physical mute switch or loose cable connection.",
+          "expected_result": "Caller confirms physical connection and unmuted status.",
+          "follow_up_question": "Is the physical mute switch off and the cable firmly plugged in?",
+          "positive_indicators": ["yes", "plugged in", "unmuted", "checked", "done"],
+          "negative_indicators": ["no", "loose", "still muted", "not working"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "Let's check Windows Microphone Privacy permissions. Please open Windows Settings, go to Privacy & Security, click Microphone, and ensure 'Let desktop apps access your microphone' is switched to ON. Is that toggle enabled?",
+          "rationale": "Verifies OS-level application permission for microphone capture.",
+          "expected_result": "Caller enables microphone privacy permission.",
+          "follow_up_question": "Is the microphone access toggle turned on now?",
+          "positive_indicators": ["yes", "turned on", "enabled", "working now", "it works"],
+          "negative_indicators": ["still no", "already on", "no change", "not working"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 3,
+          "instruction": "Inside your meeting app (such as Zoom or Teams), open Audio Settings and select your specific headset as the Default Input Device rather than 'Default System Microphone'. Try speaking a test phrase now. Does the test mic bar move?",
+          "rationale": "Selects correct hardware endpoint inside conferencing software.",
+          "expected_result": "Microphone test bar moves and caller is heard.",
+          "follow_up_question": "Can you see the microphone test bar moving when you speak now?",
+          "positive_indicators": ["yes", "working", "moving", "they can hear me", "fixed", "solved"],
+          "negative_indicators": ["no", "still dead", "not moving", "broken"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Why is my Bluetooth headset mic muffled?",
+          "answer": "Windows switches Bluetooth headsets to Hands-Free AG Audio profile during calls. For high fidelity, use a USB adapter or standalone microphone.",
+          "keywords": ["muffled", "bad quality", "bluetooth mic"]
+        }
+      ],
+      "escalation_triggers": [
+        "Internal motherboard audio codec hardware failure",
+        "Damaged physical 3.5mm headphone jack"
+      ],
+      "fallback_resolution": "Escalate to Desktop Support for hardware replacement or external USB audio adapter."
+    },
+    {
+      "id": "kb_vpn_remote_access",
+      "title": "VPN Disconnections, Remote Desktop (RDP) & Corporate Network Access",
+      "category": "VPN & Remote Access",
+      "keywords": ["vpn", "remote desktop", "rdp", "cisco", "anyconnect", "forticlient", "globalprotect", "intranet", "tunnel", "corporate network", "விபிஎன்", "ரிமோட்"],
+      "summary": "Resolution flow for corporate VPN tunnel failures, authentication time-outs, and Remote Desktop gateway connectivity drops.",
+      "common_symptoms": [
+        "VPN client stuck on 'Connecting' or 'Gateway not reachable'",
+        "RDP session drops with error code 0x204 or 0x104",
+        "Cannot access internal company portals or shared drives"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Let's first make sure your base internet connection is stable. Can you open any regular public website like google.com on your browser without VPN?",
+          "rationale": "Ensures home ISP connection is healthy before diagnosing VPN tunnel.",
+          "expected_result": "Caller confirms basic web access.",
+          "follow_up_question": "Does a standard public web page load for you?",
+          "positive_indicators": ["yes", "loads", "working", "open", "fine"],
+          "negative_indicators": ["no", "no internet", "failed", "offline"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "Let's reset the VPN client state. Please right-click your VPN app icon in the system tray, select Exit or Disconnect, wait 10 seconds, relaunch it, and enter your 2FA verification code. Does it connect successfully now?",
+          "rationale": "Clears expired IPsec session tokens and forces fresh 2FA handshake.",
+          "expected_result": "VPN establishes secure encrypted tunnel.",
+          "follow_up_question": "Has the VPN status changed to Connected?",
+          "positive_indicators": ["yes", "connected", "working now", "it works", "green"],
+          "negative_indicators": ["still failing", "error", "rejected", "timed out"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Why does VPN disconnect when I switch Wi-Fi networks?",
+          "answer": "VPN creates a bound virtual network adapter to your active IP address. Changing Wi-Fi requires a new DHCP lease, causing the secure tunnel to tear down and re-authenticate.",
+          "keywords": ["vpn drops", "disconnects", "switch wifi"]
+        }
+      ],
+      "escalation_triggers": [
+        "Corporate VPN certificate expired on gateway",
+        "User account missing Security Group authorization"
+      ],
+      "fallback_resolution": "Escalate to Tier 2 Network & Security Operations to verify RADIUS/SAML token validity."
+    },
+    {
+      "id": "kb_email_outlook_sync",
+      "title": "Email Synchronization, Outlook Password Prompts & Outbox Errors",
+      "category": "Email & Office Apps",
+      "keywords": ["email", "outlook", "mail", "outbox", "sync", "inbox", "exchange", "gmail", "smtp", "imap", "ஈமெயில்", "அஞ்சல்", "மெயில்"],
+      "summary": "Fixing Microsoft Outlook sync hangs, emails stuck in Outbox, corrupt OST offline caches, and repeated authentication credential prompts.",
+      "common_symptoms": [
+        "Emails stuck in Outbox with send error 0x80042109",
+        "Outlook says 'Disconnected' or 'Need Password'",
+        "New emails not appearing in Inbox on desktop app"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Email issues can definitely be stressful! Let's check the bottom status bar in Outlook. Does it say 'Connected to Microsoft Exchange' or does it say 'Disconnected' / 'Working Offline'?",
+          "rationale": "Identifies if the client is toggled to offline mode.",
+          "expected_result": "Caller reports status bar mode.",
+          "follow_up_question": "Does Outlook say Connected, Disconnected, or Working Offline?",
+          "positive_indicators": ["connected", "online", "fine"],
+          "negative_indicators": ["disconnected", "working offline", "offline", "need password"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "If it says Working Offline, open the 'Send / Receive' tab at the top and click the 'Work Offline' button to toggle it back to online mode. Then click 'Send/Receive All Folders'. Do your emails start sending?",
+          "rationale": "Toggles connection state and triggers immediate sync.",
+          "expected_result": "Outbox clears and new emails sync.",
+          "follow_up_question": "Did your emails send successfully and is Outlook syncing now?",
+          "positive_indicators": ["yes", "sent", "syncing", "working", "fixed", "all good"],
+          "negative_indicators": ["no", "still stuck", "password prompt", "error"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How to fix Outlook constantly asking for password?",
+          "answer": "Open Windows Credential Manager -> Windows Credentials, delete old entries under Generic Credentials for Office/Outlook, then restart Outlook and check 'Remember my credentials'.",
+          "keywords": ["password prompt", "asking password", "credential"]
+        }
+      ],
+      "escalation_triggers": [
+        "Exchange Online mailbox corrupted or quota exceeded",
+        "MFA Conditional Access policy misconfiguration"
+      ],
+      "fallback_resolution": "Escalate to Cloud Systems Administrator for Exchange mailbox repair and license verification."
+    },
+    {
+      "id": "kb_bluetooth_peripheral",
+      "title": "Bluetooth Mouse, Keyboard & Wireless Accessory Pairing Failures",
+      "category": "Bluetooth & Accessories",
+      "keywords": ["bluetooth", "mouse", "keyboard", "trackpad", "pairing", "wireless", "connect device", "ப்ளூடூத்", "மவுஸ்", "விசைப்பலகை"],
+      "summary": "Troubleshooting unresponsive wireless peripherals, Bluetooth driver crashes, and device unpairing loops on Windows and macOS.",
+      "common_symptoms": [
+        "Wireless mouse pointer lagging or completely unresponsive",
+        "Bluetooth switch missing in Windows Action Center",
+        "Device says 'Paired' but does not connect"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Let's first check power and pairing mode on your device. Ensure fresh batteries are inserted, switch the device off for 5 seconds, turn it back on, and press the Connect/Pairing button until the LED blinks. Is the pairing light blinking now?",
+          "rationale": "Verifies hardware power and activates Bluetooth broadcast beacon.",
+          "expected_result": "Device enters discovery mode.",
+          "follow_up_question": "Is the pairing LED light blinking on your mouse or keyboard?",
+          "positive_indicators": ["yes", "blinking", "on", "blue light", "ready"],
+          "negative_indicators": ["no", "no light", "dead", "not blinking"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "In Windows Settings under 'Bluetooth & devices', click the three dots next to your device, select 'Remove device', then click 'Add device' and choose it from the list. Does it pair and respond now?",
+          "rationale": "Clears stale Bluetooth pairing keys and re-establishes encrypted link.",
+          "expected_result": "Device connects and functions normally.",
+          "follow_up_question": "Is your wireless mouse or keyboard responding on your screen now?",
+          "positive_indicators": ["yes", "working", "connected", "moving", "fixed", "works"],
+          "negative_indicators": ["no", "still not connecting", "failed", "error"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What if Bluetooth icon disappears in Windows?",
+          "answer": "Open Device Manager, scan for hardware changes, or restart the 'Bluetooth Support Service' in services.msc.",
+          "keywords": ["missing bluetooth", "icon disappeared", "bluetooth gone"]
+        }
+      ],
+      "escalation_triggers": [
+        "Internal Wi-Fi/Bluetooth PCIe card failure",
+        "Motherboard chipset driver corruption"
+      ],
+      "fallback_resolution": "Escalate to Hardware Support for dedicated USB Bluetooth dongle provision."
+    },
+    {
       "id": "kb_critical_escalation",
       "title": "Critical Hardware Hazards, Security Incidents, and Supervisor Escalation",
       "category": "Critical Escalations",

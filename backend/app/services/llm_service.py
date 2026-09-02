@@ -34,6 +34,60 @@ CALL HISTORY:
 """
 
 
+TAMIL_DIAGNOSTIC_STEPS: Dict[str, List[str]] = {
+    "kb_network_wifi": [
+        "முதலில் உங்கள் வைபை ரூட்டரின் விளக்குகளை பாருங்கள். அதில் Internet அல்லது WAN விளக்கு பச்சை நிறத்தில் எரிகிறதா அல்லது சிவப்பு நிறத்தில் எரிகிறதா?",
+        "சரிங்க, உங்கள் ரூட்டரின் பவர் கேபிளை கழற்றி, 30 வினாடிகள் கழித்து மீண்டும் உறுதியாக பொருத்துங்கள். விளக்குகள் சீரானதும் எனக்கு கூறுங்கள்.",
+        "இப்போது உங்கள் கணினியில் கமாண்ட் பிராம்ப்ட் திறந்து 'ipconfig /flushdns' என்று தட்டச்சு செய்து Enter அழுத்தவும். இப்போது இணையதளம் திறக்கிறதா என்று சோதிக்கவும்."
+    ],
+    "kb_account_password": [
+        "உங்கள் கணக்கு லாகின் பிரச்சனையை சரிசெய்யலாம்! நீங்கள் பிரவுசர் மூலமாக லாகின் செய்கிறீர்களா அல்லது கம்ப்யூட்டர் லாக் ஸ்கிரீனில் லாகின் செய்கிறீர்களா?",
+        "உங்கள் பதிவுசெய்யப்பட்ட மொபைல் எண்ணிற்கு கடவுச்சொல் மாற்றும் ரகசிய லிங்க் அனுப்பவா?"
+    ],
+    "kb_hardware_printer": [
+        "பிரிண்டர் பிரச்சனையை சரிசெய்யலாம்! உங்கள் பிரிண்டர் பவர் ஆன் செய்யப்பட்டு, USB கேபிள் அல்லது வைபை உடன் இணைக்கப்பட்டுள்ளதா என்று பாருங்கள்.",
+        "விண்டோஸ் செட்டிங்ஸில் சென்று 'Printers & Scanners' திறந்து, உங்கள் பிரிண்டர் 'Use Printer Offline' என்ற நிலையில் உள்ளதா என்று சோதித்து அதை நீக்குங்கள்.",
+        "பிரிண்ட் ஸ்பூலர் சேவையை ரீஸ்டார்ட் செய்ய, 'services.msc' திறந்து 'Print Spooler' மீது வலது கிளிக் செய்து Restart கொடுங்கள். இப்போது பிரிண்ட் ஆகிறதா?"
+    ],
+    "kb_os_bsod_performance": [
+        "கணினி வேகம் மற்றும் ப்ளூ ஸ்கிரீன் பிரச்சனையை சரிசெய்யலாம்! உங்கள் கணினியில் Ctrl+Shift+Esc அழுத்தி டாஸ்க் மேனேஜர் திறந்து, CPU அல்லது மெமரி 100% உள்ளதா என்று பாருங்கள்.",
+        "கணினியை ஒருமுறை முழுமையாக ரீஸ்டார்ட் செய்து, தேவையற்ற பின்னணி செயலிகளை மூடுங்கள். இப்போது கணினி வேகம் சீராக உள்ளதா?"
+    ],
+    "kb_software_install": [
+        "சாப்ட்வேர் இன்ஸ்டால் பிழையை சரிசெய்யலாம்! இன்ஸ்டாலர் பைல் மீது வலது கிளிக் செய்து 'Run as administrator' கொடுத்து முயற்சி செய்தீர்களா?",
+        "விண்டோஸ் டிஸ்க் ஸ்பேஸ் மற்றும் ஆன்டிவைரஸ் பிளாக்கிங் உள்ளதா என்று சரிபார்க்கவும்."
+    ],
+    "kb_audio_mic_meeting": [
+        "ஆடியோ பிரச்சனையை சரிசெய்யலாம்! உங்கள் ஹெட்போன் கேபிள் சரியாக பொருத்தப்பட்டுள்ளதா மற்றும் மியூட் பட்டன் ஆஃப் செய்யப்பட்டுள்ளதா என்று பாருங்கள்.",
+        "விண்டோஸ் செட்டிங்ஸில் Privacy & Security -> Microphone சென்று 'Allow apps to access microphone' ஆன் செய்யப்பட்டுள்ளதா என்று சோதிக்கவும்.",
+        "மீட்டிங் ஆப் ஆடியோ செட்டிங்ஸில் உங்கள் ஹெட்போனை டீபால்ட் மைக்ரோபோனாக தேர்வு செய்து பேசுங்கள். மைக் சத்தம் இப்போது கேட்கிறதா?"
+    ],
+    "kb_vpn_remote_access": [
+        "விபிஎன் பிரச்சனையை சரிசெய்யலாம்! முதலில் விபிஎன் இல்லாமல் சாதாரண கூகுள் இணையதளம் உங்கள் பிரவுசரில் திறக்கிறதா என்று பாருங்கள்.",
+        "விபிஎன் செயலியை முழுமையாக மூடி, 10 வினாடிகள் கழித்து மீண்டும் திறந்து உங்கள் 2FA பாஸ்கோடு கொடுத்து இணையுங்கள். இப்போது கனெக்ட் ஆகிறதா?"
+    ],
+    "kb_email_outlook_sync": [
+        "ஈமெயில் பிரச்சனையை சரிசெய்யலாம்! அவுட்லுக் கீழ் பகுதியில் 'Connected' என்று உள்ளதா அல்லது 'Working Offline' என்று உள்ளதா என்று பாருங்கள்.",
+        "அவுட்லுக்கில் Send/Receive டேப் சென்று 'Work Offline' பட்டனை அழுத்தி ஆன்லைன் மோடுக்கு மாற்றுங்கள். இப்போது மெயில்கள் செல்கிறதா?"
+    ],
+    "kb_bluetooth_peripheral": [
+        "ப்ளூடூத் சாதன பிரச்சனையை சரிசெய்யலாம்! மவுஸ் அல்லது கீபோர்டில் புதிய பேட்டரி போட்டு, கனெக்ட் பட்டனை 5 வினாடிகள் அழுத்தி பிடிக்கவும். லைட் பிளிங்க் ஆகிறதா?",
+        "விண்டோஸ் ப்ளூடூத் செட்டிங்ஸில் சாதனத்தை Remove செய்துவிட்டு மீண்டும் Add Device கொடுங்கள். இப்போது வேலை செய்கிறதா?"
+    ],
+    "kb_critical_escalation": [
+        "உங்கள் பாதுகாப்பிற்காக, உடனடியாக சாதனத்தின் பவர் கேபிளை கழற்றி சுவிட்ச் ஆஃப் செய்யுங்கள்! எங்கள் அவசர தொழில்நுட்ப நிபுணரிடம் உங்களை உடனடியாக இணைக்கிறேன்."
+    ]
+}
+
+
+def get_step_instruction(article_id: str, step_index: int, default_text: str, is_tamil: bool) -> str:
+    if is_tamil and article_id in TAMIL_DIAGNOSTIC_STEPS:
+        steps = TAMIL_DIAGNOSTIC_STEPS[article_id]
+        if step_index < len(steps):
+            return steps[step_index]
+    return default_text
+
+
 class LLMService:
     def __init__(self):
         self.provider = settings.LLM_PROVIDER.lower()
@@ -286,7 +340,8 @@ class LLMService:
                 session.diagnostics.attempted_steps.append(f"Step 1: {first_step.instruction}")
 
                 if is_tamil:
-                    start_text = f"நிச்சயமாக, உங்கள் {current_article.category} பிரச்சனையை சரிசெய்ய உதவுகிறேன். {first_step.instruction}"
+                    step_body = get_step_instruction(current_article.id, 0, first_step.instruction, True)
+                    start_text = f"கண்டிப்பாக, நான் உங்களுக்கு உதவுகிறேன்! {step_body}"
                 else:
                     start_text = f"I can certainly help you with your {current_article.category.lower()} issue. {first_step.instruction}"
 
@@ -379,7 +434,8 @@ class LLMService:
                         next_step = flow[next_idx]
                         session.diagnostics.attempted_steps.append(f"Step {next_idx+1}: {next_step.instruction}")
                         if is_tamil:
-                            step_text = f"மிக நன்று. அடுத்ததாக, {next_step.instruction}"
+                            step_body = get_step_instruction(current_article.id, next_idx, next_step.instruction, True)
+                            step_text = f"மிக நன்று! அடுத்ததாக, {step_body}"
                         else:
                             step_text = f"Great. Next, {next_step.instruction}"
                         return {
@@ -434,7 +490,8 @@ class LLMService:
                         next_step = flow[next_idx]
                         session.diagnostics.attempted_steps.append(f"Step {next_idx+1}: {next_step.instruction}")
                         if is_tamil:
-                            alt_text = f"புரிந்து கொண்டேன். நமது அடுத்த முறையை முயற்சிப்போம். {next_step.instruction}"
+                            alt_body = get_step_instruction(current_article.id, next_idx, next_step.instruction, True)
+                            alt_text = f"புரிந்து கொண்டேன். நமது அடுத்த முறையை முயற்சிப்போம். {alt_body}"
                         else:
                             alt_text = f"Understood. Let's try our alternative step. {next_step.instruction}"
                         return {
@@ -449,7 +506,8 @@ class LLMService:
             else:
                 # Unclear response or user repeating symptom - guide them with clarity
                 if is_tamil:
-                    guide_text = f"சரிங்க, உங்கள் பிரச்சனையை தீர்க்க: {current_step.instruction} {current_step.follow_up_question}"
+                    step_body = get_step_instruction(current_article.id, curr_step_idx, current_step.instruction, True)
+                    guide_text = f"சரிங்க, உங்கள் பிரச்சனையை தீர்க்க: {step_body} {current_step.follow_up_question}"
                 else:
                     guide_text = f"I understand. To resolve your issue: {current_step.instruction} {current_step.follow_up_question}"
                 return {

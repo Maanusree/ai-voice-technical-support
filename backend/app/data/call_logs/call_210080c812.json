@@ -1,0 +1,56 @@
+{
+  "session_id": "call_210080c812",
+  "caller_number": "+917418214150",
+  "caller_name": "Customer",
+  "start_time": "2026-09-02T09:59:41.627798Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "Network & Connectivity",
+  "issue_summary": "Wi-Fi and Internet Connectivity Troubleshooting - wifi velai seiyala net varala",
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Website",
+  "diagnostics": {
+    "scenario_id": "kb_network_wifi",
+    "current_step_index": 1,
+    "attempted_steps": [
+      "Step 1: First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "Step 2: Since the light indicates a connection issue or is red, let's perform a clean power cycle. Please unplug the power cable from the back of your router, wait 30 seconds, and plug it firmly back in. Let me know when the lights stabilize."
+    ],
+    "failure_count": 1,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "4fb9426e",
+      "role": "user",
+      "text": "wifi velai seiyala",
+      "timestamp": "2026-09-02T09:59:41.661244Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "53d3278b",
+      "role": "assistant",
+      "text": "புரிந்து கொண்டேன். நமது அடுத்த முறையை முயற்சிப்போம். சரிங்க, உங்கள் ரூட்டரின் பவர் கேபிளை கழற்றி, 30 வினாடிகள் கழித்து மீண்டும் உறுதியாக பொருத்துங்கள். விளக்குகள் சீரானதும் எனக்கு கூறுங்கள்.",
+      "timestamp": "2026-09-02T09:59:41.661489Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.19812583923339844
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_fallback_step",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}
