@@ -107,9 +107,18 @@ async def universal_incoming_webhook(request: Request):
     return await handle_incoming_real_call(request)
 
 
-# Mount Static Frontend
-FRONTEND_DIR = settings.PROJECT_ROOT / "frontend"
-if FRONTEND_DIR.exists():
+# Mount Static Frontend with Multi-Path Candidate Resolution
+candidate_paths = [
+    settings.PROJECT_ROOT / "frontend",
+    Path("frontend").resolve(),
+    Path(__file__).resolve().parent.parent.parent / "frontend",
+    Path.cwd() / "frontend",
+    Path("/app/frontend"),
+    Path("/opt/render/project/src/frontend")
+]
+FRONTEND_DIR = next((p for p in candidate_paths if p.exists() and (p / "index.html").exists()), None)
+
+if FRONTEND_DIR:
     app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
     @app.get("/")
@@ -120,3 +129,7 @@ if FRONTEND_DIR.exists():
     async def favicon():
         svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎧</text></svg>"""
         return Response(content=svg_content, media_type="image/svg+xml")
+else:
+    @app.get("/")
+    async def fallback_index():
+        return JSONResponse({"status": "running", "service": "InnoAssist AI Voice Backend", "docs": "/docs"})
