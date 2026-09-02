@@ -1,0 +1,53 @@
+{
+  "session_id": "call_242e8dfb19",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Mobile Customer",
+  "start_time": "2026-09-01T19:02:29.135098Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "General Inquiries",
+  "issue_summary": null,
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Phone (Twilio PSTN)",
+  "diagnostics": {
+    "scenario_id": null,
+    "current_step_index": 0,
+    "attempted_steps": [],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "29746732",
+      "role": "user",
+      "text": "வணக்கம் வைஃபை வேலை செய்யல",
+      "timestamp": "2026-09-01T19:02:29.138534Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "6c508b31",
+      "role": "assistant",
+      "text": "உங்கள் பிரச்சனையை நான் சரியாக புரிந்து கொள்ள, என்ன சாதனம் அல்லது செயலியில் பிரச்சனை உள்ளது என்று கூறுங்கள் (எடுத்துக்காட்டாக Wi-Fi, பிரிண்டர், கடவுச்சொல், அல்லது கணினி).",
+      "timestamp": "2026-09-01T19:02:29.141640Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 2.864360809326172
+      },
+      "confidence": 1.0,
+      "intent": "clarification_needed",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

@@ -1,0 +1,40 @@
+{
+  "session_id": "call_ee3587463e",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Customer",
+  "start_time": "2026-09-01T17:20:46.593921Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "General Inquiries",
+  "issue_summary": null,
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Website (Browser Voice)",
+  "diagnostics": {
+    "scenario_id": null,
+    "current_step_index": 0,
+    "attempted_steps": [],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "73e3b4c1",
+      "role": "assistant",
+      "text": "Thank you for calling InnoAssist. My name is Maanu, your AI technical support specialist. How can I help you today?",
+      "timestamp": "2026-09-01T17:20:47.556419Z",
+      "audio_url": null,
+      "latency_ms": {
+        "tts": 960.6671333312988
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

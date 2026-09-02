@@ -1,0 +1,38 @@
+{
+  "session_id": "call_68d65f6fa7",
+  "caller_number": "+1-555-000-0000",
+  "caller_name": "Mobile Caller",
+  "start_time": "2026-09-01T18:53:34.060710Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "General Inquiries",
+  "issue_summary": null,
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Phone (Twilio PSTN)",
+  "diagnostics": {
+    "scenario_id": null,
+    "current_step_index": 0,
+    "attempted_steps": [],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "b7c62aa1",
+      "role": "assistant",
+      "text": "Thank you for calling InnoAssist. My name is Maanu, your AI technical support specialist. Please describe your technical issue, and I will help you fix it.",
+      "timestamp": "2026-09-01T18:53:34.061581Z",
+      "audio_url": null,
+      "latency_ms": {},
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

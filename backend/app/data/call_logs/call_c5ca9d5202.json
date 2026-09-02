@@ -1,0 +1,55 @@
+{
+  "session_id": "call_c5ca9d5202",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Mobile Customer",
+  "start_time": "2026-09-01T19:02:29.114525Z",
+  "end_time": null,
+  "duration_seconds": 0.0,
+  "status": "active",
+  "issue_category": "Network & Connectivity",
+  "issue_summary": "Wi-Fi and Internet Connectivity Troubleshooting - My wifi is not connecting",
+  "resolution_status": "in_progress",
+  "sentiment": "neutral",
+  "language": "en",
+  "call_type": "Phone (Twilio PSTN)",
+  "diagnostics": {
+    "scenario_id": "kb_network_wifi",
+    "current_step_index": 0,
+    "attempted_steps": [
+      "Step 1: First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?"
+    ],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "46ba9a5f",
+      "role": "user",
+      "text": "My wifi is not connecting",
+      "timestamp": "2026-09-01T19:02:29.116414Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "28811be9",
+      "role": "assistant",
+      "text": "I can certainly help you with your network & connectivity issue. First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "timestamp": "2026-09-01T19:02:29.124230Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 7.548093795776367
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_start",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

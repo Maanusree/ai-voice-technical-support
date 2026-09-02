@@ -1,0 +1,16 @@
+{
+  "ticket_id": "TICK-1F1389",
+  "session_id": "call_72d50b163f",
+  "caller_number": "+1-800-555-0105",
+  "caller_name": "Customer",
+  "created_at": "2026-09-01T11:09:44.028797Z",
+  "priority": "CRITICAL",
+  "status": "OPEN",
+  "category": "General Inquiries",
+  "issue_summary": "Issue reported in session call_72d50b163f",
+  "attempted_steps": [],
+  "reason_for_escalation": "Physical safety or critical security hazard detected: 'smoke'",
+  "customer_sentiment": "urgent",
+  "assigned_tier": "Tier 2 - Senior Technical Specialist",
+  "transcript_turns": []
+}

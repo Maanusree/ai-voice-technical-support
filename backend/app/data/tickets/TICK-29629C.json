@@ -1,0 +1,16 @@
+{
+  "ticket_id": "TICK-29629C",
+  "session_id": "call_763943a792",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Customer",
+  "created_at": "2026-09-01T13:26:37.706211Z",
+  "priority": "CRITICAL",
+  "status": "OPEN",
+  "category": "General Inquiries",
+  "issue_summary": "Issue reported in session call_763943a792",
+  "attempted_steps": [],
+  "reason_for_escalation": "Physical safety or critical security hazard detected: 'burning'",
+  "customer_sentiment": "urgent",
+  "assigned_tier": "Tier 2 - Senior Technical Specialist",
+  "transcript_turns": []
+}

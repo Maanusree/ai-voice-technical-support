@@ -1,0 +1,28 @@
+{
+  "ticket_id": "TICK-0EA718",
+  "session_id": "call_9e5b86ea23",
+  "caller_number": "+1-800-555-9999",
+  "caller_name": "Alice Smith",
+  "created_at": "2026-09-01T13:16:29.273978Z",
+  "priority": "HIGH",
+  "status": "OPEN",
+  "category": "Hardware & Peripherals",
+  "issue_summary": "Issue reported in session call_9e5b86ea23",
+  "attempted_steps": [],
+  "reason_for_escalation": "Hardware grinding noise requires field technician",
+  "customer_sentiment": "neutral",
+  "assigned_tier": "Tier 2 - Senior Technical Specialist",
+  "transcript_turns": [
+    {
+      "id": "4dd90ca8",
+      "role": "user",
+      "text": "My printer is completely broken and making grinding sounds",
+      "timestamp": "2026-09-01T13:16:29.273920Z",
+      "audio_url": null,
+      "latency_ms": {},
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    }
+  ]
+}

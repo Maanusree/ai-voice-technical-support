@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnoAssist AI Voice Technical Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="app-header">
+    <div class="brand-container">
+      <div class="brand-avatar">🎧</div>
+      <div class="brand-text">
+        <h1>InnoAssist AI Technical Support</h1>
+        <p>Intelligent Voice Assistant &bull; 📞 <strong>Call Hotline:</strong> <a href="tel:+19035322035" style="color: #38bdf8; font-weight: 800; text-decoration: underline;">+1 903 532 2035</a></p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs & Language Selector -->
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <select id="langSelect" style="background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: #38bdf8; font-weight: 700; padding: 0.45rem 0.8rem; border-radius: 8px; cursor: pointer; outline: none;">
+        <option value="en-US">🌐 English (US)</option>
+        <option value="ta-IN">🇮🇳 தமிழ் (Tamil)</option>
+        <option value="en-IN">🇮🇳 Tanglish / Indian English</option>
+      </select>
+
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-tab="tab-simulator" onclick="switchTab('tab-simulator')">📞 Call Simulator</button>
+        <button class="nav-tab" data-tab="tab-dashboard" onclick="switchTab('tab-dashboard')">📊 History &amp; Transcripts</button>
+        <button class="nav-tab" data-tab="tab-tickets" onclick="switchTab('tab-tickets')">🎫 Support Tickets</button>
+        <button class="nav-tab" data-tab="tab-kb" onclick="switchTab('tab-kb')">📖 Knowledge Base</button>
+        <button class="nav-tab" data-tab="tab-settings" onclick="switchTab('tab-settings')">⚙️ AI Settings</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="main-container">
+
+    <!-- Tab 1: Voice Call Simulator -->
+    <section class="tab-content active" id="tab-simulator">
+      <div class="simulator-layout">
+        
+        <!-- Left: Phone Calling Handset -->
+        <div class="phone-card">
+          <div class="agent-profile">
+            <div class="agent-photo-ring" id="callerAvatar">👩‍💻</div>
+            <div class="agent-name">Maanu - AI Support Specialist</div>
+            <div class="agent-role">Tier-1 Technical Support Specialist</div>
+            <div class="call-timer-box" id="callTimer">00:00</div>
+          </div>
+
+          <!-- Dynamic Audio Waveform Visualizer -->
+          <div class="visualizer-box">
+            <canvas id="audioCanvas"></canvas>
+          </div>
+
+          <!-- Calling Handset Buttons -->
+          <div class="call-btn-grid">
+            <button class="action-btn" id="btnStartCall" onclick="window.phoneCall &amp;&amp; window.phoneCall.startCall()">
+              <div class="btn-circle btn-green">📞</div>
+              <span>Start Call</span>
+            </button>
+            <button class="action-btn" id="btnEndCall" onclick="window.phoneCall &amp;&amp; window.phoneCall.endCall()" style="display: none;">
+              <div class="btn-circle btn-red">🛑</div>
+              <span>End Call</span>
+            </button>
+            <button class="action-btn" id="btnMuteCall" onclick="window.phoneCall &amp;&amp; window.phoneCall.toggleMute()">
+              <div class="btn-circle">🔇</div>
+              <span>Mute</span>
+            </button>
+            <button class="action-btn" id="btnHoldCall" onclick="window.phoneCall &amp;&amp; window.phoneCall.toggleHold()">
+              <div class="btn-circle">⏸️</div>
+              <span>Hold</span>
+            </button>
+            <button class="action-btn" id="btnEscalateCall" onclick="window.phoneCall &amp;&amp; window.phoneCall.escalateCall()">
+              <div class="btn-circle" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.4);">🚨</div>
+              <span>Escalate</span>
+            </button>
+          </div>
+
+          <!-- Push to Talk Mic Button -->
+          <div class="mic-wrapper">
+            <button class="btn-mic-bar" id="btnToggleMic" onclick="window.phoneCall &amp;&amp; window.phoneCall.toggleMic()">
+              🎙️ Click &amp; Speak (Microphone)
+            </button>
+          </div>
+
+          <!-- Request AI Voice Call Card -->
+          <div class="real-phone-trigger-card" style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(16, 185, 129, 0.18)); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 0.9rem; margin-top: 0.9rem; text-align: center; width: 100%;">
+            <div style="font-size: 0.72rem; color: #a5f3fc; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;">📞 Phone Support Gateway</div>
+            <button id="btnTriggerRealPhoneCall" type="button" onclick="window.openPhoneCallModal && window.openPhoneCallModal()" style="background: linear-gradient(135deg, #0284c7, #10b981); border: none; color: white; padding: 0.75rem 0.8rem; border-radius: 8px; font-weight: 800; font-size: 0.92rem; width: 100%; margin-top: 0.45rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+              <span>📲 Request Live Phone Call</span>
+            </button>
+            <div id="triggerCallStatus" style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.4rem;">
+              Enter your mobile number to receive a direct voice callback
+            </div>
+          </div>
+
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.85rem;">
+            Real-time speech recognition &bull; Natural neural voice playback
+          </div>
+        </div>
+
+        <!-- Right: Conversation HUD & Quick Scenarios -->
+        <div class="hud-layout">
+
+          <!-- 3-Step Human Guide Banner -->
+          <div class="welcome-banner">
+            <div style="font-weight: 700; font-size: 0.88rem;">💡 How to use this Voice Assistant:</div>
+            <div class="guide-steps">
+              <div class="guide-step">
+                <span class="step-num">1</span>
+                <span>Click <strong>Start Call</strong> (or a scenario below)</span>
+              </div>
+              <div class="guide-step">
+                <span class="step-num">2</span>
+                <span><strong>Speak or type</strong> your technical issue</span>
+              </div>
+              <div class="guide-step">
+                <span class="step-num">3</span>
+                <span>Follow Maanu's guide step-by-step</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversation Subtitles Feed -->
+          <div class="hud-card">
+            <div class="hud-header">
+              <div class="hud-title">
+                💬 Live Speech Subtitles &amp; Dialogue HUD
+              </div>
+              <div class="status-badge" id="callStatusPill">
+                <span class="status-dot active" id="callStatusDot"></span>
+                <span id="callStatusText">Ready (Click Start Call)</span>
+              </div>
+            </div>
+
+            <!-- Feed of message bubbles -->
+            <div class="transcript-scroll" id="transcriptFeed">
+              <div class="chat-bubble system">
+                👋 Welcome! Click <strong>"Start Call"</strong> on the left or select a <strong>Pre-Loaded Scenario</strong> below to begin your voice conversation with Maanu.
+              </div>
+            </div>
+
+            <!-- Text & Voice Input Bar -->
+            <form id="chatForm" class="chat-input-row">
+              <input type="text" id="chatInput" class="text-input" placeholder="Type your response or click mic to speak..." autocomplete="off">
+              <button type="submit" class="btn-send-text">Send ➔</button>
+            </form>
+          </div>
+
+          <!-- Quick-Launch Scenarios Grid -->
+          <div class="scenarios-card">
+            <div style="font-size: 0.88rem; font-weight: 700; color: #fff;">
+              🚀 Quick-Launch Predefined Support Scenarios (One-Click Voice Test):
+            </div>
+            <div class="scenarios-grid">
+              <button class="scenario-card-btn" data-prompt="My Wi-Fi is connected but I have no internet access." onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title">🌐 1. Wi-Fi Outage</div>
+                <div class="scenario-desc">"Wi-Fi connected but no internet"</div>
+              </button>
+
+              <button class="scenario-card-btn" data-prompt="I am locked out of my account and need to reset my password." onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title">🔑 2. Password Lockout</div>
+                <div class="scenario-desc">"Locked out of my account"</div>
+              </button>
+
+              <button class="scenario-card-btn" data-prompt="My printer is showing offline and print jobs are stuck." onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title">🖨️ 3. Printer Offline</div>
+                <div class="scenario-desc">"Printer offline &amp; jobs stuck"</div>
+              </button>
+
+              <button class="scenario-card-btn" data-prompt="My computer is freezing and gave a Blue Screen error." onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title">💻 4. BSOD &amp; Slow PC</div>
+                <div class="scenario-desc">"Blue Screen &amp; 100% CPU freeze"</div>
+              </button>
+
+              <button class="scenario-card-btn" data-prompt="Software install failed with error 0x80070005 access denied." onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title">⚙️ 5. Software Install Error</div>
+                <div class="scenario-desc">"Install error 0x80070005"</div>
+              </button>
+
+              <button class="scenario-card-btn urgent" data-prompt="Help! I smell smoke and burning coming from my computer!" onclick="triggerScenario(this.getAttribute('data-prompt'))">
+                <div class="scenario-title" style="color: #f87171;">🔥 6. Smoke Hazard</div>
+                <div class="scenario-desc">"Smoke &amp; burning odor (Escalation)"</div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tab 2: Call History & Transcripts -->
+    <section class="tab-content" id="tab-dashboard">
+      <!-- Analytics KPI Row -->
+      <div class="analytics-kpis">
+        <div class="kpi-card rate">
+          <div class="kpi-label">Total Calls Handled</div>
+          <div class="kpi-num" id="statTotalCalls">0</div>
+        </div>
+        <div class="kpi-card resolved">
+          <div class="kpi-label">Resolution Rate</div>
+          <div class="kpi-num" id="statResolutionRate">0%</div>
+        </div>
+        <div class="kpi-card escalated">
+          <div class="kpi-label">Escalated to Human Tier 2</div>
+          <div class="kpi-num" id="statEscalated">0</div>
+        </div>
+        <div class="kpi-card duration">
+          <div class="kpi-label">Avg Call Duration</div>
+          <div class="kpi-num" id="statAvgDuration">0s</div>
+        </div>
+      </div>
+
+      <!-- Action Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h2 style="font-size: 1.15rem; font-weight: 700;">Call Detail Records (CDR) &amp; Transcripts</h2>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="nav-tab" id="btnRefreshLogs" style="background: rgba(255,255,255,0.08);">🔄 Refresh Logs</button>
+          <button class="nav-tab" id="btnExportCsv" style="background: var(--success); color: #fff;">📥 Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Table Container -->
+      <div class="table-box">
+        <table class="human-table">
+          <thead>
+            <tr>
+              <th>Session ID</th>
+              <th>Channel / Type</th>
+              <th>Date &amp; Time</th>
+              <th>Caller Phone</th>
+              <th>Category</th>
+              <th>Duration</th>
+              <th>Resolution Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="sessionsTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab 3: Escalation Tickets -->
+    <section class="tab-content" id="tab-tickets">
+      <div style="margin-bottom: 1.25rem;">
+        <h2 style="font-size: 1.15rem; font-weight: 700;">Tier-2 Human Escalation Tickets</h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">Tickets automatically generated when issues cannot be resolved or critical hazards are detected.</p>
+      </div>
+
+      <div class="table-box">
+        <table class="human-table">
+          <thead>
+            <tr>
+              <th>Ticket ID</th>
+              <th>Created At</th>
+              <th>Priority</th>
+              <th>Category</th>
+              <th>Escalation Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="ticketsTableBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Tab 4: Knowledge Base Explorer -->
+    <section class="tab-content" id="tab-kb">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+        <div>
+          <h2 style="font-size: 1.15rem; font-weight: 700;">Support Knowledge Base &amp; Diagnostic Trees</h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">Technical domain articles and decision trees used by Alex.</p>
+        </div>
+        <input type="text" id="kbSearchInput" class="text-input" style="max-width: 320px;" placeholder="🔍 Search articles, FAQs, keywords...">
+      </div>
+
+      <div class="kb-grid" id="kbCardsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Tab 5: Settings & Engine Config -->
+    <section class="tab-content" id="tab-settings">
+      <div class="phone-card" style="max-width: 650px; margin: 0 auto; align-items: stretch;">
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #38bdf8;">⚙️ AI Engine &amp; Voice Settings</h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+          Configure the active AI reasoning engine and API keys. The <strong>Built-in Offline Diagnostic Engine</strong> works 100% locally out-of-the-box with zero configuration!
+        </p>
+
+        <form id="settingsForm" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Active AI / LLM Provider</label>
+            <select id="llmProviderSelect" class="text-input" style="width: 100%; cursor: pointer;">
+              <option value="offline">🛡️ Built-in Offline Diagnostic Engine (Default - Zero API cost, Fast)</option>
+              <option value="gemini">✨ Google Gemini API (gemini-2.0-flash)</option>
+              <option value="openai">🤖 OpenAI API (gpt-4o-mini)</option>
+              <option value="groq">⚡ Groq API (llama-3.3-70b-versatile)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Google Gemini API Key (Optional)</label>
+            <input type="password" id="geminiApiKeyInput" class="text-input" style="width: 100%;" placeholder="AIzaSy...">
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">OpenAI API Key (Optional)</label>
+            <input type="password" id="openaiApiKeyInput" class="text-input" style="width: 100%;" placeholder="sk-proj-...">
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Groq API Key (Optional)</label>
+            <input type="password" id="groqApiKeyInput" class="text-input" style="width: 100%;" placeholder="gsk_...">
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+            <button type="submit" class="btn-send-text" style="padding: 0.85rem 1.5rem;">Save Engine Configuration</button>
+            <button type="button" class="nav-tab" id="btnTestVoice" style="background: rgba(255,255,255,0.08); padding: 0.85rem 1rem;">🔊 Test Voice Output</button>
+          </div>
+        </form>
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 1.5rem 0;">
+
+        <h3 style="font-size: 1.1rem; font-weight: 700; color: #34d399; margin-bottom: 0.5rem;">📞 Twilio Real Phone Gateway Credentials</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Paste your Twilio credentials here so the system can call your real phone number directly from <strong>+1 903 532 2035</strong>!
+        </p>
+
+        <form id="twilioSettingsForm" style="display: flex; flex-direction: column; gap: 0.9rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Twilio Account SID</label>
+            <input type="text" id="settingTwilioSid" class="text-input" style="width: 100%;" placeholder="ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Twilio Auth Token</label>
+            <input type="password" id="settingTwilioToken" class="text-input" style="width: 100%;" placeholder="Paste your 32-character Auth Token">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Twilio From Number</label>
+              <input type="text" id="settingTwilioFrom" class="text-input" style="width: 100%;" value="+19035322035">
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Destination Phone Number</label>
+              <input type="text" id="settingTwilioTo" class="text-input" style="width: 100%;" value="+917418214150">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem;">Ngrok Public Webhook URL</label>
+            <input type="text" id="settingNgrokUrl" class="text-input" style="width: 100%;" value="https://snooze-prominent-overvalue.ngrok-free.dev">
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; margin-top: 0.4rem;">
+            <button type="submit" class="btn-send-text" style="background: linear-gradient(135deg, #059669, #0284c7); padding: 0.85rem 1.5rem;">💾 Save &amp; Trigger Call to My Phone</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Transcript Detail Modal -->
+  <div class="modal-overlay" id="transcriptModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTranscriptTitle" style="font-size: 1.05rem;">Call Transcript</h3>
+        <button class="btn-close" id="btnCloseModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalTranscriptBody">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Outbound Phone Call Input Modal -->
+  <div class="modal-overlay" id="phoneCallModal">
+    <div class="modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.1rem; color: #38bdf8; display: flex; align-items: center; gap: 0.5rem;">
+          <span>📞</span> Connect Live Phone Call
+        </h3>
+        <button class="btn-close" onclick="closePhoneCallModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 1rem;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.45;">
+          Enter your mobile number below. Our AI specialist <strong>Maanu</strong> will immediately place a live phone call to your mobile device from <strong>+1 903 532 2035</strong>!
+        </p>
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 0.35rem;">Your Mobile Number (with Country Code):</label>
+          <input type="text" id="modalInputPhoneNumber" class="text-input" style="width: 100%; font-size: 1.05rem; font-weight: 700; letter-spacing: 1px;" value="+917418214150" placeholder="+91 98765 43210">
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 0.5rem;">
+          <button type="button" class="nav-tab" onclick="closePhoneCallModal()" style="background: rgba(255,255,255,0.08); padding: 0.65rem 1rem; cursor: pointer;">Cancel</button>
+          <button type="button" class="btn-send-text" onclick="triggerDirectCall()" style="background: linear-gradient(135deg, #059669, #0284c7); padding: 0.65rem 1.25rem; font-weight: 800; cursor: pointer;">📲 Call My Phone</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPhoneCallModal() {
+      const modal = document.getElementById('phoneCallModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+        const input = document.getElementById('modalInputPhoneNumber');
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      } else {
+        const phone = prompt('Enter your mobile number to receive a call from +1 903 532 2035:', '+917418214150');
+        if (phone) triggerDirectCall(phone);
+      }
+    }
+
+    function closePhoneCallModal() {
+      const modal = document.getElementById('phoneCallModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+      }
+    }
+
+    async function triggerDirectCall(phoneNumber) {
+      const phoneInput = document.getElementById('modalInputPhoneNumber');
+      const phone = phoneNumber || (phoneInput ? phoneInput.value.trim() : '+917418214150');
+      closePhoneCallModal();
+      const statusEl = document.getElementById('triggerCallStatus');
+      if (statusEl) statusEl.innerText = '⏳ Contacting Twilio Gateway to call ' + phone + '...';
+
+      try {
+        const res = await fetch('/api/telephony/trigger-call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ to_phone: phone })
+        });
+        const data = await res.json();
+        if (res.ok && data.status === 'success') {
+          if (statusEl) statusEl.innerText = '📞 Calling ' + phone + '! Check your phone!';
+          alert('🎉 ' + data.message + '\n\nPick up your phone to speak with Maanu!');
+        } else {
+          if (statusEl) statusEl.innerText = '❌ ' + (data.message || 'Call failed');
+          alert('⚠️ ' + (data.message || 'Call failed. Check Twilio settings.'));
+        }
+      } catch (err) {
+        if (statusEl) statusEl.innerText = '❌ Connection error';
+        alert('Could not connect to server to trigger call.');
+      }
+    }
+
+    async function loadKbArticlesDirect() {
+      const grid = document.getElementById('kbCardsGrid');
+      if (!grid) return;
+      try {
+        const resp = await fetch('/api/knowledge/articles');
+        const data = await resp.json();
+        const articles = data.articles || [];
+        if (articles.length === 0) {
+          grid.innerHTML = '<p style="color: var(--text-muted); grid-column: 1/-1;">No technical support articles found.</p>';
+          return;
+        }
+        grid.innerHTML = articles.map(art => `
+          <div class="kb-article-card" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; box-shadow: var(--shadow-md);">
+            <span class="badge info" style="margin-bottom: 0.5rem; display: inline-block;">${art.category}</span>
+            <h3 style="font-size: 1.05rem; color: #38bdf8; margin-bottom: 0.35rem;">${art.title}</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0.4rem 0;">${art.summary}</p>
+            <div style="margin-top: 0.75rem;">
+              <strong style="font-size: 0.8rem; color: var(--text-primary);">Diagnostic Step Flow:</strong>
+              <ol style="margin: 0.35rem 0 0 1.2rem; font-size: 0.82rem; color: var(--text-secondary);">
+                ${art.diagnostic_flow.map(s => `<li style="margin-bottom: 0.25rem;"><strong>Step ${s.step_number}:</strong> ${s.instruction}</li>`).join('')}
+              </ol>
+            </div>
+            ${art.faqs && art.faqs.length > 0 ? `
+              <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color);">
+                <strong style="font-size: 0.8rem; color: var(--accent-cyan);">Quick FAQ:</strong>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  <strong>Q:</strong> ${art.faqs[0].question}<br>
+                  <strong>A:</strong> ${art.faqs[0].answer}
+                </p>
+              </div>
+            ` : ''}
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Direct KB load error:', e);
+      }
+    }
+
+    async function loadDashboardDirect() {
+      const tableBody = document.getElementById('sessionsTableBody');
+      if (!tableBody) return;
+      try {
+        const resp = await fetch('/api/logs/sessions?limit=50');
+        const data = await resp.json();
+        const sessions = data.sessions || [];
+        if (sessions.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No call logs recorded yet. Start a call to generate records.</td></tr>';
+        } else {
+          tableBody.innerHTML = sessions.map(s => {
+            const dateStr = s.start_time ? new Date(s.start_time).toLocaleString() : 'N/A';
+            const durStr = `${Math.round(s.duration_seconds || 0)}s`;
+            const resStatus = s.resolution_status || 'in_progress';
+            let badgeClass = 'warning';
+            if (resStatus === 'resolved') badgeClass = 'success';
+            if (resStatus === 'escalated') badgeClass = 'danger';
+
+            const isPhone = (s.call_type && s.call_type.includes('Phone')) || (s.caller_number && s.caller_number.startsWith('+1903'));
+            const typeLabel = isPhone ? '📱 Phone' : '🌐 Website';
+            const typeBadge = isPhone ? 'warning' : 'info';
+
+            return `
+              <tr>
+                <td><strong>${s.session_id}</strong></td>
+                <td><span class="badge ${typeBadge}">${typeLabel}</span></td>
+                <td>${dateStr}</td>
+                <td>${s.caller_number}</td>
+                <td>${s.issue_category || 'General Inquiries'}</td>
+                <td>${durStr}</td>
+                <td><span class="badge ${badgeClass}">${resStatus.toUpperCase()}</span></td>
+                <td>
+                  <button class="nav-tab" style="padding: 0.3rem 0.6rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; cursor: pointer;" onclick="window.dashboardManager ? window.dashboardManager.viewTranscript('${s.session_id}') : viewTranscriptDirect('${s.session_id}')">
+                    📜 View Transcript (${s.turns.length})
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        const aResp = await fetch('/api/logs/analytics');
+        const aData = await aResp.json();
+        const totalEl = document.getElementById('statTotalCalls');
+        const resRateEl = document.getElementById('statResolutionRate');
+        const escCountEl = document.getElementById('statEscalated');
+        const avgDurEl = document.getElementById('statAvgDuration');
+        if (totalEl) totalEl.innerText = aData.total_calls || 0;
+        if (resRateEl) resRateEl.innerText = `${aData.resolution_rate || 0}%`;
+        if (escCountEl) escCountEl.innerText = aData.escalated_count || 0;
+        if (avgDurEl) avgDurEl.innerText = `${Math.round(aData.avg_duration_seconds || 0)}s`;
+      } catch (e) {
+        console.error('Direct dashboard load error:', e);
+      }
+    }
+
+    async function loadTicketsDirect() {
+      const container = document.getElementById('ticketsTableBody');
+      if (!container) return;
+      try {
+        const resp = await fetch('/api/tickets');
+        const data = await resp.json();
+        const tickets = data.tickets || [];
+        if (tickets.length === 0) {
+          container.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">No escalation tickets generated yet.</td></tr>';
+          return;
+        }
+        container.innerHTML = tickets.map(t => {
+          const prioClass = t.priority === 'CRITICAL' ? 'danger' : (t.priority === 'HIGH' ? 'warning' : 'info');
+          const dateStr = new Date(t.created_at).toLocaleString();
+          return `
+            <tr>
+              <td><strong>${t.ticket_id}</strong></td>
+              <td>${dateStr}</td>
+              <td><span class="badge ${prioClass}">${t.priority}</span></td>
+              <td>${t.category}</td>
+              <td>${t.reason_for_escalation}</td>
+              <td><span class="badge info">${t.status}</span></td>
+            </tr>
+          `;
+        }).join('');
+      } catch (e) {
+        console.error('Direct tickets load error:', e);
+      }
+    }
+
+    async function viewTranscriptDirect(sessionId) {
+      const modal = document.getElementById('transcriptModal');
+      const modalBody = document.getElementById('modalTranscriptBody');
+      const modalTitle = document.getElementById('modalTranscriptTitle');
+      if (!modal || !modalBody) return;
+      try {
+        const resp = await fetch(`/api/logs/sessions/${sessionId}`);
+        const session = await resp.json();
+        if (modalTitle) modalTitle.innerText = `Call Transcript - ${sessionId}`;
+        let contentHtml = `
+          <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid var(--border-color);">
+            <p><strong>Caller:</strong> ${session.caller_name} (${session.caller_number})</p>
+            <p><strong>Category:</strong> ${session.issue_category}</p>
+            <p><strong>Status:</strong> ${session.resolution_status} | <strong>Sentiment:</strong> ${session.sentiment}</p>
+            ${session.escalation_ticket_id ? `<p style="color: var(--danger);"><strong>Escalation Ticket:</strong> ${session.escalation_ticket_id}</p>` : ''}
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        `;
+        if (session.turns && session.turns.length > 0) {
+          session.turns.forEach(turn => {
+            const isAssistant = turn.role === 'assistant';
+            contentHtml += `
+              <div style="padding: 0.85rem; border-radius: 8px; background: ${isAssistant ? 'rgba(30, 41, 59, 0.8)' : 'rgba(59, 130, 246, 0.15)'}; border-left: 4px solid ${isAssistant ? 'var(--accent-cyan)' : 'var(--accent-blue)'};">
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.25rem; display: flex; justify-content: space-between;">
+                  <strong>${isAssistant ? '👩‍💻 Support Specialist (Maanu)' : '👤 Caller'}</strong>
+                  <span>${turn.timestamp ? new Date(turn.timestamp).toLocaleTimeString() : ''}</span>
+                </div>
+                <div style="color: var(--text-primary); font-size: 0.92rem; line-height: 1.4;">${turn.text}</div>
+              </div>
+            `;
+          });
+        } else {
+          contentHtml += `<p style="color: var(--text-muted); text-align: center;">No turns recorded for this call.</p>`;
+        }
+        contentHtml += `</div>`;
+        modalBody.innerHTML = contentHtml;
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+      } catch (e) {
+        console.error('Direct transcript load error:', e);
+      }
+    }
+    window.viewTranscriptDirect = viewTranscriptDirect;
+
+    function switchTab(tabId) {
+      const navTabs = document.querySelectorAll('.nav-tabs .nav-tab[data-tab]');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      navTabs.forEach(t => {
+        if (t.getAttribute('data-tab') === tabId) {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+
+      tabContents.forEach(c => {
+        if (c.id === tabId) {
+          c.style.display = 'block';
+          c.classList.add('active');
+        } else {
+          c.style.display = 'none';
+          c.classList.remove('active');
+        }
+      });
+
+      if (tabId === 'tab-dashboard') {
+        loadDashboardDirect();
+      } else if (tabId === 'tab-kb') {
+        loadKbArticlesDirect();
+      } else if (tabId === 'tab-tickets') {
+        loadTicketsDirect();
+      }
+    }
+    window.switchTab = switchTab;
+
+    async function triggerScenario(promptText) {
+      if (window.phoneCall) {
+        if (window.phoneCall.callState !== 'connected' && window.phoneCall.callState !== 'escalating') {
+          await window.phoneCall.startCall();
+          setTimeout(() => {
+            window.phoneCall.handleUserSpokenMessage(promptText);
+          }, 800);
+        } else {
+          window.phoneCall.handleUserSpokenMessage(promptText);
+        }
+      }
+    }
+    window.triggerScenario = triggerScenario;
+
+    // Load initial data on startup
+    document.addEventListener('DOMContentLoaded', () => {
+      loadKbArticlesDirect();
+      loadDashboardDirect();
+      loadTicketsDirect();
+
+      const input = document.getElementById('modalInputPhoneNumber');
+      if (input) {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') triggerDirectCall();
+        });
+      }
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script src="/static/js/audio_visualizer.js?v=1.0.7"></script>
+  <script src="/static/js/phone_call.js?v=1.0.7"></script>
+  <script src="/static/js/dashboard.js?v=1.0.7"></script>
+  <script src="/static/js/kb_explorer.js?v=1.0.7"></script>
+  <script src="/static/js/app.js?v=1.0.7"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+{
+  "articles": [
+    {
+      "id": "kb_network_wifi",
+      "title": "Wi-Fi and Internet Connectivity Troubleshooting",
+      "category": "Network & Connectivity",
+      "keywords": ["internet", "wifi", "wi-fi", "network", "connection", "disconnected", "offline", "dns", "router", "modem", "ip address", "slow internet"],
+      "summary": "Step-by-step diagnostic procedure for resolving home and office wireless network connection drops, limited connectivity, and DNS resolution failures.",
+      "common_symptoms": [
+        "No internet access icon in taskbar",
+        "Web pages say 'DNS server not responding' or 'Server IP could not be found'",
+        "Wi-Fi connected but no internet",
+        "Frequent disconnection from network"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+          "rationale": "Identifies if the ISP connection to the modem/router is intact.",
+          "expected_result": "Customer reports light color and behavior.",
+          "follow_up_question": "Are the router lights solid green, or are they blinking or red?",
+          "positive_indicators": ["solid green", "green", "blue", "white", "normal", "all green"],
+          "negative_indicators": ["red", "orange", "amber", "blinking red", "off", "no light"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "Since the light indicates a connection issue or is red, let's perform a clean power cycle. Please unplug the power cable from the back of your router, wait 30 seconds, and plug it firmly back in. Let me know when the lights stabilize.",
+          "rationale": "Clears routing cache, refreshes DHCP leases, and forces handshake with ISP.",
+          "expected_result": "Router restarts and lights turn green.",
+          "follow_up_question": "Have the lights turned back to solid green after rebooting?",
+          "positive_indicators": ["yes", "green now", "back on", "solid green", "working now", "it worked"],
+          "negative_indicators": ["still red", "still orange", "no change", "same problem", "no internet"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 3,
+          "instruction": "Let's quickly refresh your computer's network configuration. Please open Command Prompt or Terminal, type 'ipconfig /flushdns' and press Enter. Then try opening any website.",
+          "rationale": "Clears outdated or corrupted DNS cache on the operating system.",
+          "expected_result": "DNS cache cleared and web page loads.",
+          "follow_up_question": "Did the web page open successfully after flushing DNS?",
+          "positive_indicators": ["yes", "working", "opened", "fixed", "loads now", "connected"],
+          "negative_indicators": ["no", "didn't work", "still not loading", "error", "failed"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I reset my Wi-Fi password?",
+          "answer": "Open your browser and navigate to 192.168.1.1 or 192.168.0.1, log in with your admin credentials found on the router sticker, and update the WPA2/WPA3 Pre-Shared Key under Wireless Settings.",
+          "keywords": ["password", "reset wifi", "change wifi password"]
+        },
+        {
+          "question": "Why is my Wi-Fi showing 'Connected, no internet'?",
+          "answer": "This usually indicates an IP conflict, an ISP line outage, or an expired DHCP lease. Rebooting the router and renewing IP via 'ipconfig /renew' usually solves it.",
+          "keywords": ["connected no internet", "no internet access"]
+        }
+      ],
+      "escalation_triggers": [
+        "Repeated red optical/fiber LOS light indicating physical line cut",
+        "ISP widespread regional outage confirmed",
+        "Router hardware failed to power on"
+      ],
+      "fallback_resolution": "If network connectivity remains unresolved after power-cycling and DNS flush, we will escalate to our Tier 2 Network Engineering team or your ISP dispatch."
+    },
+    {
+      "id": "kb_account_password",
+      "title": "Account Access, Lockouts, and Password Reset",
+      "category": "Account & Security",
+      "keywords": ["password", "account", "login", "locked", "reset", "forgot password", "2fa", "two-factor", "authentication", "sso", "credentials", "access"],
+      "summary": "Resolution flow for user account lockouts, self-service password reset procedures, and 2FA multi-factor authentication issues.",
+      "common_symptoms": [
+        "Your account has been temporarily locked due to too many failed attempts",
+        "Invalid username or password",
+        "2FA verification code not received on phone",
+        "Password expired notice"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Let's first confirm if you are using the self-service portal or a domain login. Are you trying to log in via your web browser or directly into your Windows/Mac computer?",
+          "rationale": "Distinguishes between Identity Provider (Okta/Azure AD) vs local machine authentication.",
+          "expected_result": "Caller identifies login medium.",
+          "follow_up_question": "Are you logging in through the web browser or into the computer lock screen?",
+          "positive_indicators": ["browser", "web", "website", "portal", "okta", "azure"],
+          "negative_indicators": ["computer", "laptop", "pc", "windows", "mac", "lock screen"],
+          "on_success_action": "proceed",
+          "on_failure_action": "proceed",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "If your account is locked due to repeated attempts, our security policy imposes a 15-minute cool-down. I can trigger an instant secure password reset link to your registered recovery mobile number or secondary email. Would you like me to send that now?",
+          "rationale": "Provides secure self-service password reset token.",
+          "expected_result": "Caller consents to receiving reset link.",
+          "follow_up_question": "Shall I send the secure password reset link to your registered mobile number?",
+          "positive_indicators": ["yes", "please", "send it", "sure", "ok", "send link"],
+          "negative_indicators": ["no", "wrong number", "don't have phone", "lost phone", "cannot access"],
+          "on_success_action": "proceed",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 3,
+          "instruction": "I have dispatched the reset token. Please check your SMS or email, click the link, and enter a new password with at least 12 characters, including uppercase, lowercase, numbers, and symbols. Let me know when you have updated it.",
+          "rationale": "Ensures adherence to enterprise password complexity guidelines.",
+          "expected_result": "Password updated successfully and caller logs in.",
+          "follow_up_question": "Were you able to reset your password and sign in successfully?",
+          "positive_indicators": ["yes", "logged in", "working", "success", "signed in", "all good"],
+          "negative_indicators": ["no", "didn't get code", "error", "expired", "failed"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What if I haven't received my 2FA authentication code?",
+          "answer": "Check cellular reception, ensure do-not-disturb is off, or use the Authenticator app push notification option instead of SMS.",
+          "keywords": ["2fa", "otp", "code not received"]
+        }
+      ],
+      "escalation_triggers": [
+        "User lost recovery device and has no backup MFA methods",
+        "Suspected unauthorized account takeover or compromise",
+        "Executive account lockout"
+      ],
+      "fallback_resolution": "If automated reset fails or 2FA device is lost, escalate to Security & Identity Access Management (IAM) for manual identity verification."
+    },
+    {
+      "id": "kb_hardware_printer",
+      "title": "Printer and Peripheral Troubleshooting",
+      "category": "Hardware & Peripherals",
+      "keywords": ["printer", "print", "printing", "offline", "paper jam", "spooler", "driver", "scanner", "usb", "cartridge", "toner"],
+      "summary": "Resolution steps for printers showing offline status, cleared paper jams, print spooler queue stalls, and driver re-initialization.",
+      "common_symptoms": [
+        "Printer status is Offline in Windows settings",
+        "Print jobs stuck in queue deleting or erroring",
+        "Paper jam error even after clearing paper",
+        "Printer does not respond to print commands"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Let's first check the physical connection and power. Is the printer screen powered on with no error lights, and is the USB or Ethernet cable securely connected?",
+          "rationale": "Verifies physical layer readiness and hardware self-test status.",
+          "expected_result": "Printer is powered on and connected.",
+          "follow_up_question": "Is the printer display on and showing 'Ready', or is there an error message on its screen?",
+          "positive_indicators": ["ready", "powered on", "screen on", "looks normal", "lights green"],
+          "negative_indicators": ["error", "paper jam", "door open", "offline", "orange light", "off"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "Let's clear the Windows Print Spooler which frequently freezes print jobs. Press Windows Key + R, type 'services.msc', scroll down to 'Print Spooler', right-click it, and select 'Restart'.",
+          "rationale": "Restarts the Windows print subsystem and purges stuck queue descriptors.",
+          "expected_result": "Print spooler restarts cleanly.",
+          "follow_up_question": "Did you restart the Print Spooler service successfully?",
+          "positive_indicators": ["yes", "restarted", "done", "completed", "ok"],
+          "negative_indicators": ["no", "cannot find", "failed", "access denied", "stuck"],
+          "on_success_action": "proceed",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 3,
+          "instruction": "Now, let's print a quick Windows Test Page. In Printers & Scanners, click your printer, choose 'Manage', and click 'Print a test page'. Does the page print out?",
+          "rationale": "Validates end-to-end driver communication with the hardware.",
+          "expected_result": "Test page prints successfully.",
+          "follow_up_question": "Did the test page print out from your printer?",
+          "positive_indicators": ["yes", "printed", "working", "printing now", "all good", "came out"],
+          "negative_indicators": ["no", "nothing happened", "error", "blank page", "jammed"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I clear a paper jam completely?",
+          "answer": "Turn off the printer, open the rear access door and paper tray, gently pull the jammed paper in the direction of the paper path with both hands, and inspect for torn scrap pieces.",
+          "keywords": ["paper jam", "jammed", "stuck paper"]
+        }
+      ],
+      "escalation_triggers": [
+        "Internal mechanical grinding noise or broken roller gears",
+        "Hardware toner sensor circuit failure"
+      ],
+      "fallback_resolution": "If spooler reset and driver test fail, escalate to On-Site Hardware Support for physical inspection or replacement."
+    },
+    {
+      "id": "kb_os_bsod_performance",
+      "title": "Operating System Performance and BSOD Recovery",
+      "category": "Operating System & Performance",
+      "keywords": ["slow", "freeze", "crash", "bsod", "blue screen", "performance", "cpu", "memory", "ram", "rebooting", "freezing", "lag", "hang"],
+      "summary": "Triage and repair procedures for high CPU/RAM resource exhaustion, system freezes, Blue Screen of Death (BSOD), and corrupted system files.",
+      "common_symptoms": [
+        "Computer freezing or running extremely slowly",
+        "Blue screen with stop code like CRITICAL_PROCESS_DIED or MEMORY_MANAGEMENT",
+        "Fan spinning at max speed constantly",
+        "Apps taking minutes to respond"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Let's first check Task Manager to see what is consuming your system resources. Press Ctrl + Shift + Escape together. On the Processes tab, what percentage does CPU and Memory show at the top?",
+          "rationale": "Pinpoints runaway processes or memory leaks.",
+          "expected_result": "Caller reports CPU/RAM percentages and high-usage apps.",
+          "follow_up_question": "Is your CPU or Memory showing high utilization, like 90% or 100%?",
+          "positive_indicators": ["yes", "high", "100%", "90%", "80%", "maxed out", "chrome", "antivirus"],
+          "negative_indicators": ["no", "normal", "low", "10%", "20%", "shows blue screen"],
+          "on_success_action": "proceed",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "If a specific app is hogging 100% CPU, select it and click 'End Task'. If you experienced a Blue Screen crash, let's run the Windows System File Checker. Open Command Prompt as Administrator, type 'sfc /scannow' and press Enter.",
+          "rationale": "Repairs corrupted Windows system binaries and registry entries.",
+          "expected_result": "SFC scan completes and repairs files.",
+          "follow_up_question": "Did the SFC scan report that it found and successfully repaired corrupt files?",
+          "positive_indicators": ["yes", "repaired", "success", "fixed files", "no integrity violations"],
+          "negative_indicators": ["no", "error", "could not repair", "crashed again", "failed"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What should I do if my PC gets a Blue Screen repeatedly?",
+          "answer": "Boot into Safe Mode by holding Shift while clicking Restart, and check Device Manager for recently updated faulty drivers or bad memory modules.",
+          "keywords": ["bsod", "blue screen", "stop code", "crash loop"]
+        }
+      ],
+      "escalation_triggers": [
+        "Frequent BSOD crash loop preventing Windows from booting",
+        "SMART hard drive failure error reported during BIOS POST"
+      ],
+      "fallback_resolution": "If system corruption is unrepairable or hard drive failure is detected, escalate to Tier 2 Desktop Engineering for hardware diagnostics and data backup."
+    },
+    {
+      "id": "kb_software_install",
+      "title": "Software Installation, Updates, and Error Codes",
+      "category": "Software & Applications",
+      "keywords": ["install", "installation", "update", "error code", "0x80070005", "crash on launch", "app not opening", "software failed", "permission"],
+      "summary": "Fixes for failed software installers, permissions errors, Windows update error codes, and corrupted installer cache.",
+      "common_symptoms": [
+        "Installation failed with error 0x80070005 (Access Denied)",
+        "Application opens for 1 second and immediately closes",
+        "Installer says another installation is already in progress"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "Most installation failures occur due to lack of administrative privileges. Let's right-click on the installer file and choose 'Run as administrator'. Did the installation wizard launch without errors?",
+          "rationale": "Elevates permissions for registering system DLLs and writing to Program Files.",
+          "expected_result": "Installer runs with administrative rights.",
+          "follow_up_question": "Did the installer proceed when running as administrator?",
+          "positive_indicators": ["yes", "working", "installing now", "proceeded", "success"],
+          "negative_indicators": ["no", "same error", "access denied", "0x80070005", "failed"],
+          "on_success_action": "resolved",
+          "on_failure_action": "next_step",
+          "is_terminal_resolution": false
+        },
+        {
+          "step_number": 2,
+          "instruction": "Let's clear temporary installation files. Press Windows Key + R, type '%temp%', press Enter, select all files with Ctrl+A, and press Delete. Then restart the installer.",
+          "rationale": "Purges locked installer temporary setup files.",
+          "expected_result": "Temporary files removed and setup completes.",
+          "follow_up_question": "Were you able to complete the software installation after clearing temporary files?",
+          "positive_indicators": ["yes", "installed", "finished", "working now", "success"],
+          "negative_indicators": ["no", "failed", "error persists", "still not working"],
+          "on_success_action": "resolved",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I fix error 0x80070005?",
+          "answer": "This error signifies Access Denied. Ensure you have administrator rights and that your anti-virus software is not blocking the installation directory.",
+          "keywords": ["0x80070005", "access denied", "permission error"]
+        }
+      ],
+      "escalation_triggers": [
+        "Enterprise Group Policy blocking software deployment",
+        "Registry corruption preventing MSI installer service from running"
+      ],
+      "fallback_resolution": "If installation continues to fail due to domain policies or registry errors, escalate to System Administration for remote package deployment."
+    },
+    {
+      "id": "kb_critical_escalation",
+      "title": "Critical Hardware Hazards, Security Incidents, and Supervisor Escalation",
+      "category": "Critical Escalations",
+      "keywords": ["smoke", "burning", "fire", "spark", "liquid", "spill", "water", "supervisor", "manager", "human", "agent", "ransomware", "hacked", "stolen"],
+      "summary": "Immediate triage and safety protocol for physical hazards, active security compromises, and direct caller escalation requests.",
+      "common_symptoms": [
+        "Burning smell or smoke from power supply/laptop",
+        "Liquid spilled on running keyboard/device",
+        "Ransomware screen demanding payment",
+        "Caller requesting human supervisor immediately"
+      ],
+      "diagnostic_flow": [
+        {
+          "step_number": 1,
+          "instruction": "For your safety, immediately unplug the device from wall power and shut it down. Do not attempt to turn it on or touch any frayed cords. I am escalating you immediately to our Emergency Tier 2 Support Team.",
+          "rationale": "Prevents electrical fire hazard, hardware short circuit, or data compromise.",
+          "expected_result": "Caller unplugs equipment and connects to human specialist.",
+          "follow_up_question": "Have you safely disconnected the power cable?",
+          "positive_indicators": ["yes", "unplugged", "turned off", "done", "safe"],
+          "negative_indicators": ["no", "cannot", "wait"],
+          "on_success_action": "escalate",
+          "on_failure_action": "escalate",
+          "is_terminal_resolution": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What to do if liquid spilled on laptop?",
+          "answer": "Immediately disconnect charger, hold power button 10 seconds to force shutdown, invert device in an A-frame tent shape, and do not power on for at least 48 hours.",
+          "keywords": ["liquid spill", "water spill", "spilled coffee"]
+        }
+      ],
+      "escalation_triggers": [
+        "Active electrical or fire hazard",
+        "Active ransomware/phishing malware infestation",
+        "Direct supervisor demand"
+      ],
+      "fallback_resolution": "Immediate priority routing to Senior Operations Lead & Incident Response Team."
+    }
+  ],
+  "general_faqs": [
+    {
+      "question": "What are your technical support hours?",
+      "answer": "Our automated AI technical support voice system is available 24 hours a day, 7 days a week. Live human engineering specialists are available 24/7 for critical incidents and 8 AM to 8 PM EST for standard tickets.",
+      "keywords": ["hours", "support hours", "availability", "open"]
+    },
+    {
+      "question": "Can I request a human support specialist at any time?",
+      "answer": "Yes, you can request a human specialist at any point during this call by saying 'speak with a representative' or clicking the Escalate button on your screen.",
+      "keywords": ["human", "representative", "real person", "agent", "supervisor"]
+    },
+    {
+      "question": "Where can I track my support ticket status?",
+      "answer": "You can view all your active tickets and call history directly in the Support Dashboard tab on this portal.",
+      "keywords": ["ticket status", "track ticket", "view tickets"]
+    }
+  ]
+}

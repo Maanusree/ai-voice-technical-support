@@ -1,0 +1,171 @@
+{
+  "session_id": "call_e202a1bcc2",
+  "caller_number": "+917418214150",
+  "caller_name": "Mobile Customer",
+  "start_time": "2026-09-02T04:31:17.765268Z",
+  "end_time": "2026-09-02T04:33:18.543667Z",
+  "duration_seconds": 120.778399,
+  "status": "completed",
+  "issue_category": "Network & Connectivity",
+  "issue_summary": "Wi-Fi and Internet Connectivity Troubleshooting - My life is connected but no internet.",
+  "resolution_status": "resolved",
+  "sentiment": "positive",
+  "language": "ta",
+  "call_type": "Phone (Twilio PSTN)",
+  "diagnostics": {
+    "scenario_id": "kb_network_wifi",
+    "current_step_index": 1,
+    "attempted_steps": [
+      "Step 1: First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "Step 2: Since the light indicates a connection issue or is red, let's perform a clean power cycle. Please unplug the power cable from the back of your router, wait 30 seconds, and plug it firmly back in. Let me know when the lights stabilize."
+    ],
+    "failure_count": 1,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "4256b328",
+      "role": "assistant",
+      "text": "Thank you for calling InnoAssist. My name is Maanu, your AI technical support specialist. Please describe your technical issue, and I will help you fix it.",
+      "timestamp": "2026-09-02T04:31:17.767023Z",
+      "audio_url": null,
+      "latency_ms": {},
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "c44d2731",
+      "role": "user",
+      "text": "My life is connected but no internet.",
+      "timestamp": "2026-09-02T04:31:51.216587Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "43b72680",
+      "role": "assistant",
+      "text": "I can certainly help you with your network & connectivity issue. First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "timestamp": "2026-09-02T04:31:51.219384Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 2.6755332946777344
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_start",
+      "step_id": null
+    },
+    {
+      "id": "61367d68",
+      "role": "user",
+      "text": "Can I speak in Tamil?",
+      "timestamp": "2026-09-02T04:32:09.546771Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "273b87f2",
+      "role": "assistant",
+      "text": "Sure! I can certainly assist you in Tamil. வணக்கம்! உங்கள் தொழில்நுட்ப பிரச்சனையை கூறுங்கள், நான் உதவுகிறேன்.",
+      "timestamp": "2026-09-02T04:32:09.546883Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.06651878356933594
+      },
+      "confidence": 1.0,
+      "intent": "language_switch_tamil",
+      "step_id": null
+    },
+    {
+      "id": "f6268b7e",
+      "role": "user",
+      "text": "you know, the",
+      "timestamp": "2026-09-02T04:32:21.206545Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "9e956936",
+      "role": "assistant",
+      "text": "புரிந்து கொண்டேன். நமது அடுத்த முறையை முயற்சிப்போம். Since the light indicates a connection issue or is red, let's perform a clean power cycle. Please unplug the power cable from the back of your router, wait 30 seconds, and plug it firmly back in. Let me know when the lights stabilize.",
+      "timestamp": "2026-09-02T04:32:21.207633Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.9455680847167969
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_fallback_step",
+      "step_id": null
+    },
+    {
+      "id": "016c26c4",
+      "role": "user",
+      "text": "Hello.",
+      "timestamp": "2026-09-02T04:32:52.943305Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "8f659dfb",
+      "role": "assistant",
+      "text": "சரிங்க, உங்கள் பிரச்சனையை தீர்க்க: Since the light indicates a connection issue or is red, let's perform a clean power cycle. Please unplug the power cable from the back of your router, wait 30 seconds, and plug it firmly back in. Let me know when the lights stabilize. Have the lights turned back to solid green after rebooting?",
+      "timestamp": "2026-09-02T04:32:52.943952Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.5552768707275391
+      },
+      "confidence": 1.0,
+      "intent": "clarification_step",
+      "step_id": null
+    },
+    {
+      "id": "68092b4e",
+      "role": "user",
+      "text": "Yes, it turn green. Thank you, Henry.",
+      "timestamp": "2026-09-02T04:33:18.543226Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 150.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "c7e8404b",
+      "role": "assistant",
+      "text": "அருமை! உங்கள் பிரச்சனை தீர்க்கப்பட்டதில் மகிழ்ச்சி. உங்களுக்கு வேறு ஏதேனும் தொழில்நுட்ப உதவி தேவையா?",
+      "timestamp": "2026-09-02T04:33:18.543849Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.5340576171875
+      },
+      "confidence": 1.0,
+      "intent": "resolution_confirmed",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}

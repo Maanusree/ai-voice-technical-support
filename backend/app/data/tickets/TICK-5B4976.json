@@ -1,0 +1,16 @@
+{
+  "ticket_id": "TICK-5B4976",
+  "session_id": "call_8139423252",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Customer",
+  "created_at": "2026-09-01T09:09:24.541267Z",
+  "priority": "CRITICAL",
+  "status": "OPEN",
+  "category": "General Inquiries",
+  "issue_summary": "Issue reported in session call_8139423252",
+  "attempted_steps": [],
+  "reason_for_escalation": "Physical safety or critical security hazard detected: 'spark'",
+  "customer_sentiment": "urgent",
+  "assigned_tier": "Tier 2 - Senior Technical Specialist",
+  "transcript_turns": []
+}

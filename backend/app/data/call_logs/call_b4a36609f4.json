@@ -1,0 +1,177 @@
+{
+  "session_id": "call_b4a36609f4",
+  "caller_number": "+1-800-555-0199",
+  "caller_name": "Customer",
+  "start_time": "2026-09-01T17:17:51.960468Z",
+  "end_time": "2026-09-01T17:20:43.626439Z",
+  "duration_seconds": 171.665971,
+  "status": "completed",
+  "issue_category": "Network & Connectivity",
+  "issue_summary": "Wi-Fi and Internet Connectivity Troubleshooting - I have problem with my Wi-Fi",
+  "resolution_status": "resolved",
+  "sentiment": "positive",
+  "language": "ta",
+  "call_type": "Website (Browser Voice)",
+  "diagnostics": {
+    "scenario_id": "kb_network_wifi",
+    "current_step_index": 0,
+    "attempted_steps": [
+      "Step 1: First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?"
+    ],
+    "failure_count": 0,
+    "is_clarifying": false,
+    "context_data": {}
+  },
+  "turns": [
+    {
+      "id": "62517975",
+      "role": "assistant",
+      "text": "Thank you for calling InnoAssist. My name is Maanu, your AI technical support specialist. How can I help you today?",
+      "timestamp": "2026-09-01T17:17:53.473905Z",
+      "audio_url": null,
+      "latency_ms": {
+        "tts": 1503.5407543182373
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "f5ab4d22",
+      "role": "user",
+      "text": "I have problem with my Wi-Fi",
+      "timestamp": "2026-09-01T17:18:20.717471Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 12.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "0ea81db2",
+      "role": "assistant",
+      "text": "I can certainly help you with your network & connectivity issue. First, let's check your router lights. Could you look at the router and tell me if the Internet or WAN light is solid green, blinking, or red/orange?",
+      "timestamp": "2026-09-01T17:18:22.192513Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 5.214691162109375,
+        "tts": 1469.693899154663
+      },
+      "confidence": 1.0,
+      "intent": "diagnostic_start",
+      "step_id": null
+    },
+    {
+      "id": "9a9859a0",
+      "role": "user",
+      "text": "Enakku theriyala",
+      "timestamp": "2026-09-01T17:19:09.059336Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 12.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "a8937e4f",
+      "role": "assistant",
+      "text": "To be certain, Are the router lights solid green, or are they blinking or red?",
+      "timestamp": "2026-09-01T17:19:09.989700Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.9565353393554688,
+        "tts": 929.2051792144775
+      },
+      "confidence": 1.0,
+      "intent": "clarification_step",
+      "step_id": null
+    },
+    {
+      "id": "1324614b",
+      "role": "user",
+      "text": "Unakku Tamil theriyuma",
+      "timestamp": "2026-09-01T17:19:30.821304Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 12.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "bcddcdd2",
+      "role": "assistant",
+      "text": "Sure! I can certainly assist you in Tamil. வணக்கம்! உங்கள் தொழில்நுட்ப பிரச்சனையை கூறுங்கள், நான் உதவுகிறேன்.",
+      "timestamp": "2026-09-01T17:19:32.833045Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.08988380432128906,
+        "tts": 2011.4800930023193
+      },
+      "confidence": 1.0,
+      "intent": "language_switch_tamil",
+      "step_id": null
+    },
+    {
+      "id": "8d7c53d3",
+      "role": "user",
+      "text": "Unakku Tamil theriyuma",
+      "timestamp": "2026-09-01T17:19:41.562954Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 12.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "7afc2948",
+      "role": "assistant",
+      "text": "Sure! I can certainly assist you in Tamil. வணக்கம்! உங்கள் தொழில்நுட்ப பிரச்சனையை கூறுங்கள், நான் உதவுகிறேன்.",
+      "timestamp": "2026-09-01T17:19:42.529907Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.06890296936035156,
+        "tts": 966.4859771728516
+      },
+      "confidence": 1.0,
+      "intent": "language_switch_tamil",
+      "step_id": null
+    },
+    {
+      "id": "83d57a97",
+      "role": "user",
+      "text": "my problem gets resolved thank you",
+      "timestamp": "2026-09-01T17:20:08.128376Z",
+      "audio_url": null,
+      "latency_ms": {
+        "stt": 12.0
+      },
+      "confidence": 1.0,
+      "intent": null,
+      "step_id": null
+    },
+    {
+      "id": "56a2b290",
+      "role": "assistant",
+      "text": "That's fantastic news! I'm glad we were able to get that resolved for you today. Is there anything else I can help you with?",
+      "timestamp": "2026-09-01T17:20:09.701437Z",
+      "audio_url": null,
+      "latency_ms": {
+        "llm": 0.6372928619384766,
+        "tts": 1572.0322132110596
+      },
+      "confidence": 1.0,
+      "intent": "resolution_confirmed",
+      "step_id": null
+    }
+  ],
+  "escalation_ticket_id": null,
+  "agent_notes": null
+}
